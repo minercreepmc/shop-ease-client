@@ -1,0 +1,14 @@
+.primary-button {
+  background-color: #764722;
+  color: #caa973;
+  border: 1px solid #caa973;
+  border-radius: 2em;
+  padding: 0.5em 1.25em;
+  cursor: pointer;
+  transition: all 100ms ease-out;
+  &:hover {
+    background-color: #caa973;
+    color: #764722;
+    border: 1px solid #caa973;
+  }
+}

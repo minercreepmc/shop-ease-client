@@ -1,0 +1,44 @@
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #0a090b;
+
+  &__content {
+    padding: 2em;
+  }
+
+  &__pre-header {
+    font-size: 1rem;
+    font-weight: 300;
+    margin-bottom: 0.5rem;
+    color: #a5a19c;
+  }
+
+  &__header {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #caa973;
+  }
+
+  &__body {
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    max-width: 800px;
+    color: #c68b5b;
+  }
+
+  &__image {
+    width: 100%; // Set the image width to 100%
+    display: block; // Display the image as a block element
+    margin-top: 16px; // Add a margin-top to separate the image from the content
+
+    @media (min-width: 768px) {
+      display: none; // Hide the image on screens wider than 768px
+    }
+  }
+}
