@@ -11,21 +11,21 @@
   }
 
   &__pre-header {
-    font-size: 1rem;
+    font-size: clamp(1rem, 2vw, 1.25rem);
     font-weight: 300;
     margin-bottom: 0.5rem;
     color: #a5a19c;
   }
 
   &__header {
-    font-size: 2.5rem;
+    font-size: clamp(3rem, 2vw + 1.5rem, 5rem);
     font-weight: 600;
     margin-bottom: 1rem;
     color: #caa973;
   }
 
   &__body {
-    font-size: 1.25rem;
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
     font-weight: 400;
     margin-bottom: 2rem;
     max-width: 800px;
@@ -40,5 +40,9 @@
     @media (min-width: 768px) {
       display: none; // Hide the image on screens wider than 768px
     }
+  }
+
+  &__cta {
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
   }
 }

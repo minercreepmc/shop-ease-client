@@ -6,6 +6,12 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeModule } from './modules/home/home.module';
 import { SharedModule } from './shared/shared.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faPhone } from '@fortawesome/free-solid-svg-icons';
+import { faFacebookF, faTwitter } from '@fortawesome/free-brands-svg-icons';
+
+library.add(faFacebookF, faTwitter, faPhone);
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,6 +21,7 @@ import { SharedModule } from './shared/shared.module';
     BrowserAnimationsModule,
     HomeModule,
     SharedModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
