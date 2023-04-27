@@ -1,21 +1,67 @@
-.custom-toolbar {
+.custom-header {
   background: linear-gradient(
     90deg,
     #0e0501 0%,
     #110604 30.35%,
     #020002 99.94%
   );
-}
+  padding: 0.25rem 1em;
 
-.header__text {
-  color: #caa973;
-  font-size: 1.5rem;
-}
+  .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 
-.header__icon {
-  color: #caa973;
-}
+  .header__text {
+    color: #caa973;
+    font-size: 1.25rem;
+  }
 
-.spacer {
-  flex: 1 1 auto;
+  .header__nav {
+    display: none;
+
+    .header__nav-link {
+      color: #caa973;
+      text-decoration: none;
+      margin-right: 1rem;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .shop-now-button {
+    display: none;
+    margin-left: auto;
+  }
+
+  .header__button {
+    background: none;
+    border: none;
+    color: #caa973;
+    font-size: 1.25rem;
+    cursor: pointer;
+    display: inline-block;
+  }
+
+  @media (min-width: 768px) {
+    .shop-now-button {
+      display: inline-block;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .header__nav {
+      display: flex;
+      margin-left: auto;
+    }
+
+    .header__button {
+      display: none;
+    }
+  }
 }

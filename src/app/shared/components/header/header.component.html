@@ -1,14 +1,14 @@
-<mat-toolbar
-  color="primary"
-  role="heading"
-  aria-label="Website Name"
-  class="custom-toolbar"
->
-  <mat-toolbar-row>
+<header class="custom-header" role="heading" aria-label="Shop Ease">
+  <div class="header-content">
     <h1 class="header__text">{{ websiteName }}</h1>
-    <span class="spacer"></span>
-    <button mat-icon-button class="header__icon">
-      <mat-icon>menu</mat-icon>
+    <nav class="header__nav">
+      <a href="#" class="header__nav-link">Home</a>
+      <a href="#" class="header__nav-link">Burgers</a>
+      <a href="#" class="header__nav-link">Contact</a>
+    </nav>
+    <app-primary-button class="shop-now-button">Shop Now</app-primary-button>
+    <button class="header__button" (click)="toggleMenu()">
+      <fa-icon [icon]="faBars"></fa-icon>
     </button>
-  </mat-toolbar-row>
-</mat-toolbar>
+  </div>
+</header>

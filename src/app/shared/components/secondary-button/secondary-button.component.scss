@@ -1,0 +1,44 @@
+.secondary-button {
+  background-color: transparent;
+  color: #caa973;
+  border: 1px solid #caa973;
+  border-radius: 2em;
+  padding: 0.5em 1.25em;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s ease-in-out, transform 0.1s ease-in-out;
+  z-index: 1;
+
+  &:hover {
+    color: #fff;
+    transition: color 0.3s ease-in-out;
+  }
+
+  &:active {
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+    transform: scale(0.95);
+  }
+}
+
+.secondary-button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background-color: rgba(202, 169, 115, 0.4);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.3s ease-in-out, width 0.3s ease-in-out,
+    height 0.3s ease-in-out;
+}
+
+.secondary-button:hover::after {
+  width: 200%;
+  height: 200%;
+  opacity: 1;
+}
