@@ -1,0 +1,26 @@
+.search-bar {
+  background-color: #0a090b;
+  border: 1px solid #caa973;
+  border-radius: 5px; // Adjust as needed
+  display: flex;
+  align-items: center;
+
+  input {
+    background: none;
+    border: none;
+    color: #8c5036;
+    flex: 1;
+    padding: 0.5em;
+
+    &::placeholder {
+      color: #8c5036;
+    }
+  }
+
+  .search-icon {
+    background: none;
+    border: none;
+    color: #caa973;
+    padding: 0.5em;
+  }
+}

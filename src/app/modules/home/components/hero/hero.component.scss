@@ -6,8 +6,20 @@
   text-align: center;
   background-color: #0a090b;
 
+  @media (min-width: 768px) {
+    background-image: url('/assets/hero-section.webp');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    text-align: left;
+    align-items: flex-start;
+    justify-content: flex-start;
+  height: 100vh;
+  }
+
   &__content {
     padding: 2em;
+    max-width: 800px;
   }
 
   &__pre-header {
@@ -18,31 +30,30 @@
   }
 
   &__header {
-    font-size: clamp(3rem, 2vw + 1.5rem, 5rem);
+    font-size: clamp(2rem, 2vw + 2rem, 4.6875rem);
     font-weight: 600;
     margin-bottom: 1rem;
     color: #caa973;
   }
 
   &__body {
-    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    font-size: clamp(1rem, 2vw, 1.875rem);
     font-weight: 400;
     margin-bottom: 2rem;
-    max-width: 800px;
     color: #c68b5b;
   }
 
   &__image {
-    width: 100%; // Set the image width to 100%
-    display: block; // Display the image as a block element
-    margin-top: 16px; // Add a margin-top to separate the image from the content
+    width: 100%;
+    display: block;
+    margin-top: 16px;
 
     @media (min-width: 768px) {
-      display: none; // Hide the image on screens wider than 768px
+      display: none;
     }
   }
 
   &__cta {
-    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    font-size: clamp(1rem, 2vw, 1.875rem);
   }
 }

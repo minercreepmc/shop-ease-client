@@ -5,6 +5,8 @@ import { PrimaryButtonComponent } from './components/primary-button/primary-butt
 import { FooterComponent } from './components/footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SecondaryButtonComponent } from './components/secondary-button/secondary-button.component';
+import { RouterModule } from '@angular/router';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
 
 @NgModule({
   declarations: [
@@ -12,11 +14,13 @@ import { SecondaryButtonComponent } from './components/secondary-button/secondar
     PrimaryButtonComponent,
     FooterComponent,
     SecondaryButtonComponent,
+    SearchBarComponent,
     // ... other components, directives, and pipes
   ],
   imports: [
     CommonModule,
     FontAwesomeModule,
+    RouterModule,
     // ... other modules
   ],
   exports: [
@@ -25,6 +29,7 @@ import { SecondaryButtonComponent } from './components/secondary-button/secondar
     PrimaryButtonComponent,
     SecondaryButtonComponent,
     FontAwesomeModule,
+    SearchBarComponent,
     // ... other components, directives, and pipes
   ],
 })

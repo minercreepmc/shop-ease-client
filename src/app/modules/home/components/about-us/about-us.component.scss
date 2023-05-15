@@ -1,0 +1,101 @@
+.feature {
+  background-color: #0f0602;
+  padding: 2rem;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+
+  @media (min-width: 768px) {
+    background-image: url('/assets/feature-section.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+
+  &__content {
+    text-align: center;
+    width: 100%;
+
+    @media (min-width: 768px) {
+      text-align: right;
+      width: 50%;
+    }
+  }
+
+  &__header {
+    color: #caa973;
+    font-size: clamp(2.25rem, 2vw + 1.5rem, 3.25rem);
+    margin-bottom: 1rem;
+  }
+
+  &__body {
+    color: #8c5036;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    margin-bottom: 2rem;
+  }
+
+  &__icons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    width: 100%;
+
+    @media (min-width: 768px) {
+      width: 50%;
+      max-width: 960px;
+      justify-content: space-evenly;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0;
+    }
+    @media (min-width: 1024px) {
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    @media (min-width: 1440px) {
+      flex-wrap: nowrap;
+      max-width: 1200px;
+      gap: 2rem;
+    }
+
+    .icon {
+      width: 100%;
+      max-width: 200px;
+      margin-bottom: 1rem;
+
+      &__circle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 64px;
+        height: 64px;
+        padding: 1.5em;
+        border: 1px solid #96948a;
+        border-radius: 50%;
+        margin: 0 auto;
+        background-color: #040101;
+
+        img {
+          width: 100%;
+          height: auto;
+          max-width: 64px;
+          display: block;
+          margin: 0 auto;
+        }
+      }
+    }
+
+    p {
+      color: #c68b5b;
+      font-size: 1.15rem;
+      margin-top: 0.5rem;
+    }
+  }
+}

@@ -8,10 +8,11 @@ import { HomeModule } from './modules/home/home.module';
 import { SharedModule } from './shared/shared.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faPhone } from '@fortawesome/free-solid-svg-icons';
+import { faPhone, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faFacebookF, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { ShopModule } from './modules/shop/shop.module';
 
-library.add(faFacebookF, faTwitter, faPhone);
+library.add(faFacebookF, faTwitter, faPhone, faSearch);
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,6 +23,7 @@ library.add(faFacebookF, faTwitter, faPhone);
     HomeModule,
     SharedModule,
     FontAwesomeModule,
+    ShopModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
