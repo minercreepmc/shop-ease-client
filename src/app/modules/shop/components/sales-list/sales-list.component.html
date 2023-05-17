@@ -1,0 +1,6 @@
+<div class="sales-list">
+  <app-sale-item
+    *ngFor="let saleItem of saleItems$ | async"
+    [saleItem]="saleItem"
+  ></app-sale-item>
+</div>

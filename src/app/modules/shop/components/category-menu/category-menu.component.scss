@@ -4,6 +4,7 @@
   border-radius: 8px; // adjust as needed
   overflow-x: auto; // this allows the element to be scrollable horizontally
   white-space: nowrap; // this prevents the categories from wrapping to the next line
+  padding: 0.5em;
 
   &::-webkit-scrollbar {
     display: none; // this hides the scrollbar

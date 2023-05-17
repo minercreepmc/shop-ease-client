@@ -7,14 +7,14 @@
   background-color: #0a090b;
 
   @media (min-width: 768px) {
-    background-image: url('/assets/hero-section.webp');
+    background-image: url('/assets/hero/hero-section.webp');
     background-size: cover;
     background-position: center top;
     background-repeat: no-repeat;
     text-align: left;
     align-items: flex-start;
     justify-content: flex-start;
-  height: 100vh;
+    height: 100vh;
   }
 
   &__content {

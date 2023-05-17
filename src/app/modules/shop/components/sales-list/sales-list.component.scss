@@ -1,0 +1,10 @@
+.sales-list {
+  display: flex;
+  overflow-x: auto; // this allows the element to be scrollable horizontally
+  overflow-y: hidden;
+  white-space: nowrap; // this prevents the categories from wrapping to the next line
+
+  &::-webkit-scrollbar {
+    display: none; // this hides the scrollbar
+  }
+}
