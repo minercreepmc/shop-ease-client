@@ -1,0 +1,11 @@
+.sales-section {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+@media (min-width: 768px) {
+  .sales-section {
+    flex-direction: row;
+  }
+}

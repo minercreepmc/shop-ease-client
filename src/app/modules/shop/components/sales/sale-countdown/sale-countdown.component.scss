@@ -1,21 +1,10 @@
-.sales {
+.sale-countdown {
   display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  height: 500px;
-
-  &__part1 {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    background: #1e1411;
-    padding: 0.5em;
-  }
-
-  &__part2 {
-    background: #0f0602;
-    height: 2rem;
-  }
+  justify-content: space-around;
+  flex-wrap: wrap;
+  background: #1e1411;
+  padding: 1em;
+  height: 100%;
 
   &__info {
     color: #c68b5b;
@@ -50,8 +39,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 2em;
-  height: 2em;
 
   &__number {
     color: #8c5036;
@@ -65,18 +52,12 @@
 }
 
 @media (min-width: 768px) {
-  .sales {
-    flex-direction: row;
-
-    &__part1 {
-      flex-wrap: nowrap;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: center;
-      margin-bottom: 0;
-      margin-right: 0.5rem;
-    }
-
+  .sale-countdown {
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-bottom: 0;
     &__timer {
       flex-direction: row;
       justify-content: space-between;

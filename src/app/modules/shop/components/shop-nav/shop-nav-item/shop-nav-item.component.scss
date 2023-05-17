@@ -1,12 +1,12 @@
-.category-text {
+.shop-nav-item {
   color: #caa973;
   background-color: #0f0602;
   padding: 10px;
   border-radius: 5px;
   font-size: 14px;
-  width: 80px;
   text-align: center;
   transition: background-color 0.3s ease, transform 0.3s ease; // smooth transition for hover and active states
+  display: inline-block; // this allows the categories to be in a single line
 
   &:hover {
     background-color: #caa973; // change background color on hover

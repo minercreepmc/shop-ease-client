@@ -1,0 +1,9 @@
+<div class="shop-nav-bar">
+  <app-search-bar></app-search-bar>
+  <app-shop-nav-item
+    *ngFor="let navigation of navigations"
+    [shopNavItem]="navigation"
+  ></app-shop-nav-item>
+</div>
+
+<!-- Add more buttons as needed -->

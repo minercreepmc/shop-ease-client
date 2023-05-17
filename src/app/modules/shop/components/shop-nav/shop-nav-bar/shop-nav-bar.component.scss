@@ -1,5 +1,4 @@
-.category-menu {
-  display: flex;
+.shop-nav-bar {
   align-items: center; // this will align the categories vertically
   border-radius: 8px; // adjust as needed
   overflow-x: auto; // this allows the element to be scrollable horizontally
@@ -10,9 +9,7 @@
     display: none; // this hides the scrollbar
   }
 
-  app-category {
-    color: #caa973;
+  app-shop-nav-item {
     margin: 0 0.5em; // adjust as needed
-    display: inline-block; // this allows the categories to be in a single line
   }
 }

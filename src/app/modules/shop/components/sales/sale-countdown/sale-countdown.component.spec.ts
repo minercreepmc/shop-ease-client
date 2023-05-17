@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CategoryComponent } from './category.component';
+import { SaleCountdownComponent } from './sale-countdown.component';
 
-describe('CategoryComponent', () => {
-  let component: CategoryComponent;
-  let fixture: ComponentFixture<CategoryComponent>;
+describe('SaleCountdownComponent', () => {
+  let component: SaleCountdownComponent;
+  let fixture: ComponentFixture<SaleCountdownComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CategoryComponent ]
+      declarations: [ SaleCountdownComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CategoryComponent);
+    fixture = TestBed.createComponent(SaleCountdownComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

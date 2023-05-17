@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SalesService } from '@modules/shop/services';
-import { SaleItem } from '@modules/shop/services/sale-item.model';
+import { SaleItem, SalesService } from '@modules/shop/services/sales';
 import { Observable } from 'rxjs';
 
 @Component({
