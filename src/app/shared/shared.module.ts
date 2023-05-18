@@ -32,7 +32,7 @@ import { SecondaryButtonComponent } from './components/secondary-button/secondar
     OutlineButtonComponent,
     FontAwesomeModule,
     SearchBarComponent,
-    SecondaryButtonComponent
+    SecondaryButtonComponent,
     // ... other components, directives, and pipes
   ],
 })
