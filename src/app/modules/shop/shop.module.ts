@@ -16,6 +16,7 @@ import { RecommendedProductCardComponent } from './components/shop-recommended/r
 import { RecommendedProductsListComponent } from './components/shop-recommended/recommended-products-list/recommended-products-list.component';
 import { FeaturedBlockComponent } from './components/shop-featured/featured-block/featured-block.component';
 import { FeaturedProductComponent } from './components/shop-featured/featured-product/featured-product.component';
+import { SupplierRequestComponent } from './components/shop-contact-form/supplier-request/supplier-request.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { FeaturedProductComponent } from './components/shop-featured/featured-pr
     RecommendedProductsListComponent,
     FeaturedBlockComponent,
     FeaturedProductComponent,
+    SupplierRequestComponent,
   ],
   imports: [CommonModule, ShopRoutingModule, SharedModule],
 })
