@@ -1,0 +1,18 @@
+.featured-product {
+  background: #0f0602;
+  padding: 2em;
+  text-align: center;
+  &__image {
+    width: 75px;
+  }
+
+  &__name {
+    color: #8c5036;
+    margin-bottom: 0.25rem;
+  }
+
+  &__price {
+    color: #caa973;
+    font-weight: bold;
+  }
+}

@@ -1,0 +1,32 @@
+.recommended-product-card {
+  background-color: #0f0602;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #8c5036;
+
+  &__image {
+    width: 75px;
+  }
+
+  &__info {
+    text-align: center;
+  }
+
+  &__name {
+    color: #8c5036;
+    margin-bottom: 0.25rem;
+  }
+  &__price {
+    font-weight: bold;
+    color: #caa973;
+    margin-bottom: 0.25rem;
+  }
+
+  &__description {
+    text-align: left;
+    color: #b78a60;
+  }
+}

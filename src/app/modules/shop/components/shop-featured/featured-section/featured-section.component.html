@@ -1,0 +1,10 @@
+<section class="featured-section">
+  <app-featured-block
+    [categoryName]="firstCategory"
+    [products]="firstProducts$ | async"
+  ></app-featured-block>
+  <app-featured-block
+    [categoryName]="secondCategory"
+    [products]="secondProducts$ | async"
+  ></app-featured-block>
+</section>

@@ -1,0 +1,11 @@
+<div class="featured-block">
+  <h2 class="featured-block__title">{{ categoryName }}</h2>
+
+  <div class="featured-block__list">
+    <div *ngFor="let product of products">
+      <app-featured-product [product]="product"></app-featured-product>
+    </div>
+  </div>
+
+  <app-primary-button>View More</app-primary-button>
+</div>

@@ -1,0 +1,20 @@
+.recommended-products-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+}
+app-recommended-product-card {
+  flex: 0 0 100%; /* by default, take 100% of the container's width */
+}
+
+@media (min-width: 300px) {
+  app-recommended-product-card {
+    flex: 0 0 48%; /* two items per row */
+  }
+}
+
+@media (min-width: 768px) {
+  app-recommended-product-card {
+    flex: 0 0 32%; /* three items per row */
+  }
+}

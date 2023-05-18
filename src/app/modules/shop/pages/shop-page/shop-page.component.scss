@@ -1,3 +1,8 @@
-.shop-page-wrapper {
+.shop-page {
   background-color: #11110f;
+  flex-direction: column;
+  &__body {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
 }
