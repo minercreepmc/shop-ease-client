@@ -5,14 +5,74 @@
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
   }
+  &__thumbnail {
+    display: none;
+    position: relative;
+    color: #caa973;
+    padding: 1em;
+    p {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('/assets/featured/milks.webp'),
+        url('/assets/blends/blend1.webp');
+      background-size: cover;
+      background-blend-mode: hard-light;
+      filter: grayscale(0.5);
+      background-position: center;
+      opacity: 0.2;
+    }
+  }
+
+  &__source-now {
+    font-weight: bold;
+  }
+
+  &__list {
+    display: flex;
+  }
+
+  &__item {
+    flex: 1;
+  }
+
+  &__products {
+    display: flex;
+    margin-bottom: 0.5rem;
+    &::-webkit-scrollbar {
+      display: none; // this hides the scrollbar
+    }
+  }
+
   &__list {
     display: flex;
     overflow-x: auto; // this allows the element to be scrollable horizontally
     overflow-y: hidden;
     white-space: nowrap; // this prevents the categories from wrapping to the next line
-    margin-bottom: 0.5rem;
-    &::-webkit-scrollbar {
-      display: none; // this hides the scrollbar
+  }
+}
+
+@media (min-width: 1024px) {
+  .featured-block {
+    &__title {
+      display: none;
+    }
+    &__thumbnail {
+      display: inline-block;
+      flex: 1;
+    }
+
+    &__list {
+      flex: 4;
+    }
+
+    &__view-more {
+      display: none;
     }
   }
 }

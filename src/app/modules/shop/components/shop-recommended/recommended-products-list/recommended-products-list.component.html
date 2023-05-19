@@ -1,6 +1,10 @@
 <div class="recommended-products-list">
-  <app-recommended-product-card
+  <div
+    class="recommended-products-list__item"
     *ngFor="let product of productItems$ | async"
-    [product]="product"
-  ></app-recommended-product-card>
+  >
+    <app-recommended-product-card
+      [product]="product"
+    ></app-recommended-product-card>
+  </div>
 </div>

@@ -1,10 +1,12 @@
 .sale-item {
   background: #0f0602;
   padding: 1rem;
-  width: 140px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  border: 1px solid #8c5036;
+  border-left: none;
 
   &__image {
     width: 5rem;
@@ -13,7 +15,7 @@
 
   &__name {
     color: #caa973;
-    font-size: 1rem;
+    font-size: clamp(1rem, 2vw, 1.5rem);
     margin: 0.5rem 0;
   }
 
@@ -25,5 +27,6 @@
     margin-bottom: 1rem;
     text-align: center;
     font-weight: bold;
+    font-size: clamp(1rem, 1vw, 1.5rem);
   }
 }
