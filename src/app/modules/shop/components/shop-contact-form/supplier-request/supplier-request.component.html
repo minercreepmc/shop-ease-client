@@ -1,6 +1,52 @@
 <div class="supplier-request">
-  <h1 class="supplier-request__title">
-    An easy way to send requests to all suppliers
-  </h1>
-  <app-secondary-button>Send Inquiry</app-secondary-button>
+  <div class="supplier-request__text">
+    <h1 class="supplier-request__title">
+      An easy way to send requests to all suppliers
+    </h1>
+    <p class="supplier-request__description">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt.
+    </p>
+  </div>
+
+  <form class="supplier-request__form">
+    <h2 class="supplier-request__form-title">Send quote to suppliers</h2>
+    <div class="supplier-request__form-group">
+      <input
+        class="supplier-request__form-input"
+        type="text"
+        name="name"
+        placeholder="What item you need?"
+      />
+    </div>
+
+    <div class="supplier-request__form-group">
+      <textarea name="description" placeholder="Type more details"></textarea>
+    </div>
+
+    <div class="supplier-request__form-group">
+      <input type="number" name="quantiy" placeholder="Quantity" />
+    </div>
+
+    <div class="supplier-request__form-group">
+      <select name="pcs">
+        <option value="" disabled selected>Pcs</option>
+        <option value="1">1 Can</option>
+        <option value="6">6 Cans</option>
+        <option value="12">12 Cans</option>
+        <option value="24">24 Cans</option>
+        <option value="48">48 Cans</option>
+        <option value="96">96 Cans</option>
+        <option value="custom">Custom Quantity</option>
+      </select>
+    </div>
+
+    <div class="supplier-request__button-form">
+      <app-secondary-button>Send Inquiry</app-secondary-button>
+    </div>
+  </form>
+
+  <div class="supplier-request__button">
+    <app-secondary-button>Send Inquiry</app-secondary-button>
+  </div>
 </div>
