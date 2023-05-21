@@ -1,9 +1,7 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ShopRoutingModule } from './shop-routing.module';
 import { ShopPageComponent } from './pages/shop-page/shop-page.component';
 import { SharedModule } from '@shared/shared.module';
-import { ShopHeroComponent } from './components/shop-hero/shop-hero.component';
 import { SalesSectionComponent } from './components/sales/sales-section';
 import { SalesListComponent } from './components/sales/sales-list';
 import { SaleItemComponent } from './components/sales/sale-item';
@@ -17,11 +15,13 @@ import { RecommendedProductsListComponent } from './components/shop-recommended/
 import { FeaturedBlockComponent } from './components/shop-featured/featured-block/featured-block.component';
 import { FeaturedProductComponent } from './components/shop-featured/featured-product/featured-product.component';
 import { SupplierRequestComponent } from './components/shop-contact-form/supplier-request/supplier-request.component';
+import { ShopCarouselComponent } from './components/shop-carousel/shop-carousel.component';
+import { NgModule } from '@angular/core';
+import { GalleryModule } from 'ng-gallery';
 
 @NgModule({
   declarations: [
     ShopPageComponent,
-    ShopHeroComponent,
     SalesListComponent,
     SaleItemComponent,
     ShopNavBarComponent,
@@ -35,7 +35,8 @@ import { SupplierRequestComponent } from './components/shop-contact-form/supplie
     FeaturedBlockComponent,
     FeaturedProductComponent,
     SupplierRequestComponent,
+    ShopCarouselComponent,
   ],
-  imports: [CommonModule, ShopRoutingModule, SharedModule],
+  imports: [CommonModule, ShopRoutingModule, SharedModule, GalleryModule],
 })
 export class ShopModule {}

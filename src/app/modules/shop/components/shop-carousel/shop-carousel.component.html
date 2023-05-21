@@ -1,0 +1,41 @@
+<div class="shop-carousel">
+  <div class="shop-carousel__categories">
+    <ul class="shop-carousel__list">
+      <li
+        class="shop-carousel__item"
+        [ngClass]="{ active: category === activeCategory }"
+        *ngFor="let category of categories; let i = index"
+        (click)="setActiveCategory(category)"
+      >
+        {{ category }}
+      </li>
+    </ul>
+  </div>
+  <div class="shop-carousel__image-container">
+    <div class="slideshow-container">
+      <div
+        class="mySlides fade"
+        *ngFor="let category of categories; let i = index"
+      >
+        <div class="numbertext">{{ i + 1 }} / {{ categories.length }}</div>
+        <img
+          src="assets/categories/{{
+            category | lowercase | replace : ' ' : '-'
+          }}.webp"
+          style="width: 100%"
+        />
+        <div class="text">{{ category }}</div>
+      </div>
+      <a class="prev" (click)="plusSlides(-1)">&#10094;</a>
+      <a class="next" (click)="plusSlides(1)">&#10095;</a>
+    </div>
+    <br />
+    <div style="text-align: center">
+      <span
+        class="dot"
+        *ngFor="let category of categories; let i = index"
+        (click)="setActiveCategory(category)"
+      ></span>
+    </div>
+  </div>
+</div>
