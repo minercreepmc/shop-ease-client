@@ -2,19 +2,15 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.5em;
-}
-app-recommended-product-card {
-  flex: 0 0 100%; /* by default, take 100% of the container's width */
-}
+  justify-content: center;
 
-@media (min-width: 300px) {
-  app-recommended-product-card {
-    flex: 0 0 48%; /* two items per row */
+  &__item {
+    flex: 0 1 150px;
   }
 }
 
 @media (min-width: 768px) {
-  app-recommended-product-card {
-    flex: 0 0 32%; /* three items per row */
+  .recommended-products-list {
+    justify-content: flex-start;
   }
 }

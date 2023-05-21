@@ -1,90 +1,126 @@
 .app-footer {
-  background-image: radial-gradient(
-    50% 50% at 50% 50%,
-    #f4ebdc 0%,
-    #e7cda2 100%
-  );
-  padding: 2em 0em;
-  color: #5e2504;
+  background: #0f0602;
+  display: grid;
+  padding: 1em;
   text-align: center;
+  grid-template-areas:
+    'contact'
+    'navs'
+    'apps';
+  justify-items: center;
+  align-items: center;
 
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
+  &__contact {
+    grid-area: contact;
+    margin-bottom: 1rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
-
-    @media screen and (min-width: 768px) {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
   }
 
-  .social-icons {
-    display: flex;
-    margin-bottom: 1em;
-    padding: 1em 0em;
-    @media screen and (min-width: 768px) {
-      margin-bottom: 1em;
-    }
-
-    a {
-      color: inherit;
-      margin-right: 1em;
-
-      &:last-child {
-        margin-right: 0;
-      }
-    }
+  &__logo {
+    color: #af8b62;
+    font-family: Oswald;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
   }
 
-  .footer-links {
-    display: flex;
-    flex-direction: column;
-    @media screen and (min-width: 768px) {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-    }
+  &__text {
+    color: #c68b5b;
+  }
 
+  &__icons {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
     a {
-      color: inherit;
-      margin-bottom: 1em;
-      text-decoration: none;
+      background: #8c5036;
+      color: white;
       padding: 0.5em;
-
-      @media screen and (min-width: 768px) {
-        padding: 0.5em 1em; // Add padding to the links on desktop
-      }
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-
-      &:hover {
-        text-decoration: underline;
-      }
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    fa-icon {
+      width: 100% !important;
+      height: auto !important;
     }
   }
 
-  @media (min-width: 992px) {
-    .container {
-      flex-direction: row;
-      justify-content: space-between;
+  &__navigations {
+    grid-area: navs;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+    &__nav {
+      flex: 0 0 40%;
+    }
+    h5 {
+      color: white;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
     }
 
-    .footer-links {
-      flex-direction: row;
+    a {
+      color: #8b96a5;
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 0.25rem;
+    }
+  }
 
-      a {
-        margin-bottom: 0;
-        margin-right: 1em;
+  &__apps {
+    grid-area: apps;
+    color: white;
+    display: flex;
+    flex-direction: column;
 
-        &:last-child {
-          margin-right: 0;
-        }
+    &__title {
+      margin-bottom: 0.75rem;
+    }
+
+    img {
+      width: 150px;
+
+      &:not(:last-child) {
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .app-footer {
+    grid-template-areas:
+      'contact navs'
+      'apps navs';
+
+    &__text {
+      width: 75%;
+      margin: auto;
+      margin-bottom: 0.75rem;
+    }
+  }
+}
+
+@media (min-width: 1440px) {
+  .app-footer {
+    grid-template-areas: 'contact navs apps';
+
+    &__navigations {
+      flex-wrap: nowrap;
+      text-align: left;
+      gap: 6rem;
+
+      &__nav {
+        flex: 1;
       }
     }
   }

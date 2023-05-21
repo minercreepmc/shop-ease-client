@@ -8,6 +8,7 @@
   transition: all 0.2s ease-out;
   position: relative;
   overflow: hidden;
+  font-weight: inherit;
 
   &:hover {
     background-color: lighten(#8c5036, 5%);

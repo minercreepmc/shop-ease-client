@@ -2,6 +2,8 @@
   background: #0f0602;
   padding: 2em;
   text-align: center;
+  border: 1px solid #8c5036;
+  border-left: none;
   &__image {
     width: 75px;
   }
@@ -14,5 +16,18 @@
   &__price {
     color: #caa973;
     font-weight: bold;
+  }
+}
+
+@media (min-width: 768px) {
+  .featured-product {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    text-align: left;
+
+    &__name {
+      margin-bottom: 0.75rem;
+    }
   }
 }

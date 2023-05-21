@@ -3,6 +3,13 @@
   flex-direction: column;
   overflow-x: hidden;
   margin-bottom: 1rem;
+  &__part1 {
+    flex: 1;
+  }
+
+  &__part2 {
+    flex: 3;
+  }
 }
 
 @media (min-width: 768px) {

@@ -8,6 +8,7 @@ import { OutlineButtonComponent } from './components/outline-button/outline-butt
 import { RouterModule } from '@angular/router';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { SecondaryButtonComponent } from './components/secondary-button/secondary-button.component';
+import { ReplacePipe } from './pipes/replace.pipe';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { SecondaryButtonComponent } from './components/secondary-button/secondar
     OutlineButtonComponent,
     SearchBarComponent,
     SecondaryButtonComponent,
-    // ... other components, directives, and pipes
+    ReplacePipe,
   ],
   imports: [
     CommonModule,
@@ -32,8 +33,6 @@ import { SecondaryButtonComponent } from './components/secondary-button/secondar
     OutlineButtonComponent,
     FontAwesomeModule,
     SearchBarComponent,
-    SecondaryButtonComponent,
-    // ... other components, directives, and pipes
   ],
 })
 export class SharedModule {}

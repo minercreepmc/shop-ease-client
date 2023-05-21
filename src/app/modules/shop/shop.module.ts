@@ -1,9 +1,7 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ShopRoutingModule } from './shop-routing.module';
 import { ShopPageComponent } from './pages/shop-page/shop-page.component';
 import { SharedModule } from '@shared/shared.module';
-import { ShopHeroComponent } from './components/shop-hero/shop-hero.component';
 import { SalesSectionComponent } from './components/sales/sales-section';
 import { SalesListComponent } from './components/sales/sales-list';
 import { SaleItemComponent } from './components/sales/sale-item';
@@ -16,12 +14,19 @@ import { RecommendedProductCardComponent } from './components/shop-recommended/r
 import { RecommendedProductsListComponent } from './components/shop-recommended/recommended-products-list/recommended-products-list.component';
 import { FeaturedBlockComponent } from './components/shop-featured/featured-block/featured-block.component';
 import { FeaturedProductComponent } from './components/shop-featured/featured-product/featured-product.component';
+<<<<<<< HEAD
 import { SupplierRequestComponent } from './components/shop-contact-form/supplier-request/supplier-request.component';
+||||||| 3c8e454
+=======
+import { SupplierRequestComponent } from './components/shop-contact-form/supplier-request/supplier-request.component';
+import { ShopCarouselComponent } from './components/shop-carousel/shop-carousel.component';
+import { NgModule } from '@angular/core';
+import { GalleryModule } from 'ng-gallery';
+>>>>>>> develop
 
 @NgModule({
   declarations: [
     ShopPageComponent,
-    ShopHeroComponent,
     SalesListComponent,
     SaleItemComponent,
     ShopNavBarComponent,
@@ -34,8 +39,14 @@ import { SupplierRequestComponent } from './components/shop-contact-form/supplie
     RecommendedProductsListComponent,
     FeaturedBlockComponent,
     FeaturedProductComponent,
+<<<<<<< HEAD
     SupplierRequestComponent,
+||||||| 3c8e454
+=======
+    SupplierRequestComponent,
+    ShopCarouselComponent,
+>>>>>>> develop
   ],
-  imports: [CommonModule, ShopRoutingModule, SharedModule],
+  imports: [CommonModule, ShopRoutingModule, SharedModule, GalleryModule],
 })
 export class ShopModule {}
