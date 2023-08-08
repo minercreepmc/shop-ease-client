@@ -1,0 +1,43 @@
+.heading {
+  font-size: 2.5rem;
+  span {
+    background: var(--orange);
+    color: #fff;
+    display: inline-block;
+    padding: 0.5rem 3rem;
+    clip-path: polygon(100% 0, 93% 50%, 100% 99%, 0% 100%, 7% 50%, 0% 0%);
+  }
+}
+
+.features {
+  .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 1.5rem;
+  }
+
+  .box {
+    padding: 3rem 2rem;
+    background: #fff;
+    outline: var(--outline);
+    outline-offset: -1rem;
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    &:hover {
+      outline: var(--outline-hover);
+      outline-offset: 0;
+    }
+    img {
+      margin: 1rem 0;
+      height: 15rem;
+    }
+
+    h3 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      line-height: 1.8;
+      color: var(--light-color);
+      padding: 1rem 0;
+    }
+  }
+}

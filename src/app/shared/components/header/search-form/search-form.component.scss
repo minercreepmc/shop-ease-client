@@ -1,0 +1,29 @@
+.search-form {
+  max-width: 50rem;
+  height: 4.5rem;
+  background: #fff;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  box-shadow: var(--box-shadow);
+  input {
+    height: 100%;
+    width: 100%;
+    background: none;
+    font-size: 1.6rem;
+    color: var(--black);
+    padding: 0 1.5rem;
+    border: none;
+  }
+
+  label {
+    font-size: 2.2rem;
+    padding-right: 1.5rem;
+    color: var(--black);
+    cursor: pointer;
+    &:hover {
+      color: var(--orange);
+    }
+  }
+}

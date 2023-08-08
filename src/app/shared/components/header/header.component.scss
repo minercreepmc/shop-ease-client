@@ -1,73 +1,104 @@
-.custom-header {
-  background: linear-gradient(
-    90deg,
-    #0e0501 0%,
-    #110604 30.35%,
-    #020002 99.94%
-  );
-  padding: 0.25rem 1em;
-  width: 100%;
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
 
-  .header-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
+  justify-content: space-between;
+  padding: 2rem 9%;
+  box-shadow: var(--box-shadow);
+}
+
+.logo {
+  font-size: 2.5rem;
+  font-weight: bolder;
+  color: var(--black);
+  i {
+    color: var(--orange);
+  }
+}
+
+.navbar {
+  a {
+    font-size: 1.7rem;
+    margin: 0 1rem;
+    color: var(--black);
+    &:hover {
+      color: var(--orange);
+    }
+  }
+}
+
+.icons {
+  fa-icon {
+    height: 4.5rem;
+    width: 4.5rem;
+    line-height: 4.5rem;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    background: #eee;
+    color: var(--black);
+    font-size: 2rem;
+    margin-left: 0.3rem;
+    text-align: center;
+    &:hover {
+      background: var(--orange);
+      color: #fff;
+    }
   }
 
-  .header__text {
-    color: #caa973;
-    font-size: 1.25rem;
-    cursor: pointer;
+  #menu-btn {
+    display: none;
+  }
+}
+
+.search-form,
+.login-form,
+.shopping-cart {
+  position: absolute;
+  top: 110%;
+  right: -110%;
+  &.active {
+    right: 2rem;
+    transition: 0.4s linear;
+  }
+}
+
+@media (max-width: 992px) {
+  .header {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    position: absolute;
+    top: 110%;
+    right: -110%;
+    box-shadow: var(--box-shadow);
+    border-radius: 0.5rem;
+    background: #fff;
+    &.active {
+      right: 2rem;
+      transition: 0.4s linear;
+    }
     a {
-      text-decoration: none;
-      color: inherit;
+      font-size: 2rem;
+      margin: 2rem;
+      display: block;
     }
   }
 
-  .header__nav {
-    display: none;
-
-    .header__nav-link {
-      color: #caa973;
-      text-decoration: none;
-      margin-right: 1rem;
-
-      &:last-child {
-        margin-right: 0;
-      }
-    }
+  .search-form {
+    width: 90%;
   }
 
-  .shop-now-button {
-    display: none;
-    margin-left: auto;
-  }
-
-  .header__button {
-    background: none;
-    border: none;
-    color: #caa973;
-    font-size: 1.25rem;
-    cursor: pointer;
-    display: inline-block;
-  }
-
-  @media (min-width: 768px) {
-    .shop-now-button {
+  .icons {
+    #menu-btn {
       display: inline-block;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .header__nav {
-      display: flex;
-      margin-left: auto;
-    }
-
-    .header__button {
-      display: none;
     }
   }
 }

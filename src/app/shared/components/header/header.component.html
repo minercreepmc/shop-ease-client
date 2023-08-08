@@ -1,20 +1,39 @@
-<header class="custom-header" role="heading" aria-label="Shop Ease">
-  <div class="header-content">
-    <h1 class="header__text">
-      <a routerLink="/">
-        {{ websiteName }}
-      </a>
-    </h1>
-    <nav class="header__nav">
-      <a href="#" class="header__nav-link">Home</a>
-      <a href="#" class="header__nav-link">Burgers</a>
-      <a href="#" class="header__nav-link">Contact</a>
-    </nav>
-    <app-primary-button class="shop-now-button" routerLink="/shop"
-      >Shop Now</app-primary-button
-    >
-    <button class="header__button" (click)="toggleMenu()">
-      <fa-icon [icon]="faBars"></fa-icon>
-    </button>
+<header class="header" role="heading" aria-label="Shop Ease">
+  <a href="#" class="logo"
+    ><fa-icon [icon]="faShoppingBasket"></fa-icon>ShopEase</a
+  >
+
+  <nav class="navbar" [ngClass]="isMenuActive ? 'active' : ''">
+    <a href="#">Home</a>
+    <a href="#">Features</a>
+    <a href="#">Products</a>
+    <a href="#">Categories</a>
+    <a href="#">Review</a>
+    <a href="#">Blog</a>
+  </nav>
+
+  <div class="icons">
+    <fa-icon [icon]="faBars" id="menu-btn" (click)="toggleMenu()"></fa-icon>
+    <fa-icon
+      [icon]="faSearch"
+      id="search-btn"
+      (click)="toggleSearch()"
+    ></fa-icon>
+    <fa-icon
+      [icon]="faShoppingCart"
+      id="cart-btn"
+      (click)="toggleCart()"
+    ></fa-icon>
+    <fa-icon [icon]="faUser" id="login-btn" (click)="toggleLogin()"></fa-icon>
+  </div>
+
+  <div class="search-form" [ngClass]="isSearchActive ? 'active' : ''">
+    <app-search-form></app-search-form>
+  </div>
+  <div class="shopping-cart" [ngClass]="isCartActive ? 'active' : ''">
+    <app-shopping-cart></app-shopping-cart>
+  </div>
+  <div class="login-form" [ngClass]="isLoginActive ? 'active' : ''">
+    <app-login-form></app-login-form>
   </div>
 </header>

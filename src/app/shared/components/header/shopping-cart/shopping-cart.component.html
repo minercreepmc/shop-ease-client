@@ -1,0 +1,13 @@
+<div class="shopping-cart">
+  <div class="box" *ngFor="let product of products$ | async">
+    <fa-icon [icon]="faTrash" class="trash"></fa-icon>
+    <img src="{{ product.image_url }}" alt="{{ product.name }}" />
+    <div class="content">
+      <h3>{{ product.name }}</h3>
+      <span class="price">${{ product.price }}</span>
+      <span class="quantity">qty: 1</span>
+    </div>
+  </div>
+  <div class="total">Total: $16.96/-</div>
+  <button href="#" class="btn">Checkout</button>
+</div>
