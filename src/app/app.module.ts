@@ -10,6 +10,7 @@ import { faFacebookF, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { HeaderComponent } from '@shared/components/header/header.component';
 import { HomeComponent } from './modules/home/home.component';
 import { FeaturesComponent } from './modules/features/features.component';
+import { ProductsComponent } from './modules/products/products.component';
 
 library.add(faFacebookF, faTwitter, faPhone, faSearch);
 
@@ -22,6 +23,7 @@ library.add(faFacebookF, faTwitter, faPhone, faSearch);
     HeaderComponent,
     HomeComponent,
     FeaturesComponent,
+    ProductsComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

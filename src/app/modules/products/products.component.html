@@ -1,0 +1,22 @@
+<section class="products" id="products">
+  <h1 class="heading">Out <span>Products</span></h1>
+  <div class="keen-slider product-slider" #sliderRef>
+    <div
+      class="box keen-slider__slide"
+      *ngFor="let product of products$ | async"
+    >
+      <img src="{{ product.image_url }}" alt="" />
+      <h3>{{ product.name }}</h3>
+      <div class="price">${{ product.price }}</div>
+      <div class="stars">
+        <fa-icon [icon]="faStar"></fa-icon>
+        <fa-icon [icon]="faStar"></fa-icon>
+        <fa-icon [icon]="faStar"></fa-icon>
+        <fa-icon [icon]="faStar"></fa-icon>
+        <fa-icon [icon]="faStarHalfAlt"></fa-icon>
+      </div>
+
+      <button class="btn">Add To Cart</button>
+    </div>
+  </div>
+</section>
