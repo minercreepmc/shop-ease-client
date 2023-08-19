@@ -35,6 +35,9 @@ dependencies:
   '@angular/router':
     specifier: ^15.0.0
     version: 15.0.0(@angular/common@15.0.0)(@angular/core@15.0.0)(@angular/platform-browser@15.0.0)(rxjs@7.5.0)
+  '@auth0/angular-jwt':
+    specifier: ^5.1.2
+    version: 5.1.2(@angular/common@15.0.0)
   '@fortawesome/angular-fontawesome':
     specifier: ^0.12.1
     version: 0.12.1(@angular/core@15.0.0)(@fortawesome/fontawesome-svg-core@6.2.1)
@@ -59,6 +62,12 @@ dependencies:
   ng-gallery:
     specifier: ^8.0.4
     version: 8.0.4(@angular/cdk@15.0.0)(@angular/common@15.0.0)(@angular/core@15.0.0)(rxjs@7.5.0)
+  ngx-cookie-service:
+    specifier: ^16.0.0
+    version: 16.0.0(@angular/common@15.0.0)(@angular/core@15.0.0)
+  ngx-toastr:
+    specifier: ^17.0.2
+    version: 17.0.2(@angular/common@15.0.0)(@angular/core@15.0.0)(@angular/platform-browser@15.0.0)
   normalize.css:
     specifier: ^8.0.1
     version: 8.0.1
@@ -660,6 +669,15 @@ packages:
   /@assemblyscript/loader@0.10.1:
     resolution: {integrity: sha512-H71nDOOL8Y7kWRLqf6Sums+01Q5msqBW2KhDUTemh1tvY04eSkSXrK0uj/4mmY0Xr16/3zyZmsrxN7CKuRbNRg==}
     dev: true
+
+  /@auth0/angular-jwt@5.1.2(@angular/common@15.0.0):
+    resolution: {integrity: sha512-8ulz24cPpEkZb9/AdAaWfYIkomQDbZqvB9LproF/48Klnr30EJx09AYF9sbKTN4qLSgIZSlCb/Y7XQJZ51vSzA==}
+    peerDependencies:
+      '@angular/common': '>=12.0.0'
+    dependencies:
+      '@angular/common': 15.0.0(@angular/core@15.0.0)(rxjs@7.5.0)
+      tslib: 2.6.1
+    dev: false
 
   /@babel/code-frame@7.22.5:
     resolution: {integrity: sha512-Xmwn266vad+6DAqEB2A6V/CcZVp62BbwVmcOJc2RPuwih1kw02TjQvWVWlcKGbBPd+8/0V5DEkOcizRGYsspYQ==}
@@ -7983,6 +8001,30 @@ packages:
       '@angular/core': 15.0.0(rxjs@7.5.0)(zone.js@0.12.0)
       bezier-easing: 2.1.0
       rxjs: 7.5.0
+      tslib: 2.6.1
+    dev: false
+
+  /ngx-cookie-service@16.0.0(@angular/common@15.0.0)(@angular/core@15.0.0):
+    resolution: {integrity: sha512-bD0F8/I6Y7lfP1THeQDR70hv1SSEfFOjJqF1tnLphNBvR9EwkITO2KSOtfag7VH5CHT16PRIqv8XaGRDbCNAmA==}
+    peerDependencies:
+      '@angular/common': ^16.0.0
+      '@angular/core': ^16.0.0
+    dependencies:
+      '@angular/common': 15.0.0(@angular/core@15.0.0)(rxjs@7.5.0)
+      '@angular/core': 15.0.0(rxjs@7.5.0)(zone.js@0.12.0)
+      tslib: 2.6.1
+    dev: false
+
+  /ngx-toastr@17.0.2(@angular/common@15.0.0)(@angular/core@15.0.0)(@angular/platform-browser@15.0.0):
+    resolution: {integrity: sha512-KehiPx6bkbiUyJbabf0ZA04+ASumS8r/y4wPsUOMI9OrBvBcfq27UQmWuQKoVR8E+9y4Pq7eZkSg2kvxNvpxTA==}
+    peerDependencies:
+      '@angular/common': '>=16.0.0-0'
+      '@angular/core': '>=16.0.0-0'
+      '@angular/platform-browser': '>=16.0.0-0'
+    dependencies:
+      '@angular/common': 15.0.0(@angular/core@15.0.0)(rxjs@7.5.0)
+      '@angular/core': 15.0.0(rxjs@7.5.0)(zone.js@0.12.0)
+      '@angular/platform-browser': 15.0.0(@angular/animations@15.0.0)(@angular/common@15.0.0)(@angular/core@15.0.0)
       tslib: 2.6.1
     dev: false
 

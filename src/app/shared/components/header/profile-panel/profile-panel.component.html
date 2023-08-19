@@ -1,0 +1,11 @@
+<div class="profile-panel" *ngIf="user$ | async as user">
+  <div class="user-info">
+    <p>
+      Username: <span>{{ user.username }}</span>
+    </p>
+    <p>
+      Fullname: <span>{{ user.full_name }}</span>
+    </p>
+  </div>
+  <button class="btn" (click)="logOut()">Logout</button>
+</div>

@@ -450,6 +450,9 @@ textarea {
   padding: 0.2em 0;
 }
 
+// regular style toast
+@import "ngx-toastr/toastr";
+
 *,
 *::before,
 *::after {

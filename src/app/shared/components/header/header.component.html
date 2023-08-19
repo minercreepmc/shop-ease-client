@@ -24,7 +24,16 @@
       id="cart-btn"
       (click)="toggleCart()"
     ></fa-icon>
-    <fa-icon [icon]="faUser" id="login-btn" (click)="toggleLogin()"></fa-icon>
+    <span *ngIf="!isLoggedIn">
+      <fa-icon [icon]="faUser" id="login-btn" (click)="toggleLogin()"></fa-icon>
+    </span>
+    <span *ngIf="isLoggedIn">
+      <fa-icon
+        [icon]="faUserCircle"
+        id="profile-btn"
+        (click)="toggleProfile()"
+      ></fa-icon>
+    </span>
   </div>
 
   <div class="search-form" [ngClass]="isSearchActive ? 'active' : ''">
@@ -34,6 +43,13 @@
     <app-shopping-cart></app-shopping-cart>
   </div>
   <div class="login-form" [ngClass]="isLoginActive ? 'active' : ''">
-    <app-login-form></app-login-form>
+    <app-login-form (registerClicked)="toggleRegister()"></app-login-form>
+  </div>
+
+  <div class="register-form" [ngClass]="isRegisterActive ? 'active' : ''">
+    <app-register-form></app-register-form>
+  </div>
+  <div class="profile-panel" [ngClass]="isProfileActive ? 'active' : ''">
+    <app-profile-panel></app-profile-panel>
   </div>
 </header>

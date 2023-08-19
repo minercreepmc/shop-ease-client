@@ -34,7 +34,8 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit() {
     this.products$ = this.productService
       .getProducts$({
-        category_id: 'fbee020c-5e57-4073-886a-08105028678c',
+        category_id: '61ea6956-88de-474d-a8c8-ad8905e59252'
+
       })
       .pipe(map((response) => response.products));
   }
@@ -50,19 +51,19 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
           '(min-width: 0px)': {
             slides: {
               perView: 1,
-              spacing: 20,
+              spacing: 50,
             },
           },
           '(min-width: 768px)': {
             slides: {
               perView: 2,
-              spacing: 20,
+              spacing: 50,
             },
           },
           '(min-width: 1024px)': {
             slides: {
               perView: 3,
-              spacing: 20,
+              spacing: 50,
             },
           },
         },

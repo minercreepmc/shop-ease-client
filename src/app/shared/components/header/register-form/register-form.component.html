@@ -1,0 +1,23 @@
+<form class="register-form" [formGroup]="registerForm" (submit)="onSubmit()">
+  <h3>Create an Account</h3>
+  <input type="text" placeholder="Your full name" class="box" />
+  <input
+    formControlName="username"
+    type="username"
+    placeholder="Your username"
+    class="box"
+  />
+  <input
+    formControlName="password"
+    type="password"
+    placeholder="Choose a password"
+    class="box"
+  />
+  <input
+    formControlName="confirmPassword"
+    type="password"
+    placeholder="Confirm password"
+    class="box"
+  />
+  <button type="submit" class="btn">Register</button>
+</form>

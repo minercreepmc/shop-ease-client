@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule, Provider } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -11,8 +11,19 @@ import { HeaderComponent } from '@shared/components/header/header.component';
 import { HomeComponent } from './modules/home/home.component';
 import { FeaturesComponent } from './modules/features/features.component';
 import { ProductsComponent } from './modules/products/products.component';
+import { CategoriesComponent } from './modules/categories/categories.component';
+import { HttpCustomExceptionHandler } from './core/exception-handlers';
+import { ToastrCustomModule } from '@shared/services';
+import { httpInterceptorProviders } from './core/interceptors';
 
 library.add(faFacebookF, faTwitter, faPhone, faSearch);
+
+const exceptionHandlers: Provider[] = [
+  {
+    provide: ErrorHandler,
+    useClass: HttpCustomExceptionHandler,
+  },
+];
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,8 +35,10 @@ library.add(faFacebookF, faTwitter, faPhone, faSearch);
     HomeComponent,
     FeaturesComponent,
     ProductsComponent,
+    CategoriesComponent,
+    ToastrCustomModule,
   ],
-  providers: [],
+  providers: [...exceptionHandlers, httpInterceptorProviders],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,0 +1,14 @@
+.profile-panel {
+  width: 30rem;
+  box-shadow: var(--box-shadow);
+  padding: 2rem;
+  border-radius: 0.5rem;
+  background: #fff;
+  text-align: center;
+
+  .user-info {
+    font-size: 1.4rem;
+    color: var(--black);
+    margin-bottom: 0.5rem;
+  }
+}
