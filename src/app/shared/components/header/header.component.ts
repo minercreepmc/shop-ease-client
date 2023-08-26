@@ -1,5 +1,5 @@
-import { NgClass, NgIf } from '@angular/common';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { AsyncPipe, NgClass, NgIf } from '@angular/common';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
   faBars,
@@ -9,7 +9,8 @@ import {
   faUser,
   faUserCircle,
 } from '@fortawesome/free-solid-svg-icons';
-import { StorageService } from '@shared/services';
+import { CartModel, CartService, StorageService } from '@shared/services';
+import { Observable } from 'rxjs';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { ProfilePanelComponent } from './profile-panel/profile-panel.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
@@ -30,11 +31,15 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
     RegisterFormComponent,
     ProfilePanelComponent,
     NgIf,
+    AsyncPipe,
   ],
-  providers: [StorageService],
+  providers: [StorageService, CartService],
 })
 export class HeaderComponent implements OnInit {
-  constructor(private readonly storageService: StorageService) {}
+  constructor(
+    private readonly storageService: StorageService,
+    private readonly cartService: CartService
+  ) {}
   faBars = faBars;
   faShoppingBasket = faShoppingBasket;
   faSearch = faSearch;

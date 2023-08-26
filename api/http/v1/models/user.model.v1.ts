@@ -3,5 +3,6 @@ export class V1UserModel {
   password: string;
   role: string;
   full_name?: string | undefined;
+  address?: string;
   id: string;
 }

@@ -499,6 +499,8 @@ section {
 :root {
   --orange: #ff7800;
   --black: #130f40;
+  --dark-grey: #707070;
+  --grey: #e9edee;
   --light-color: #666;
   --box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
   --border: 0.2rem solid rgba(0, 0, 0, 0.1);
@@ -535,4 +537,12 @@ input {
   padding-bottom: 3rem;
   font-size: 3.5rem;
   color: var(--black);
+
+  span {
+    background: var(--orange);
+    color: #fff;
+    display: inline-block;
+    padding: 0.5rem 3rem;
+    clip-path: polygon(100% 0, 93% 50%, 100% 99%, 0% 100%, 7% 50%, 0% 0%);
+  }
 }

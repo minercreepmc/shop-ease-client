@@ -1,24 +1,9 @@
 <section class="categories" id="categories">
   <h1 class="heading">Product <span>Categories</span></h1>
   <div class="box-container">
-    <div class="box">
-      <img src="assets/images/category-1.jpg" alt="" />
-      <h3>Laptop</h3>
-      <p>Upto 50% off</p>
-      <button class="btn">Shop Now</button>
-    </div>
-
-    <div class="box">
-      <img src="assets/images/category-2.jpg" alt="" />
-      <h3>Phone</h3>
-      <p>Upto 50% off</p>
-      <button class="btn">Shop Now</button>
-    </div>
-
-    <div class="box">
-      <img src="assets/images/category-3.jpg" alt="" />
-      <h3>Console</h3>
-      <p>Upto 50% off</p>
+    <div class="box" *ngFor="let category of categories">
+      <img src="/assets/default-image.webp" alt="" />
+      <h3>{{ category.name }}</h3>
       <button class="btn">Shop Now</button>
     </div>
   </div>

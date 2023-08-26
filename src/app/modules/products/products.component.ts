@@ -2,17 +2,26 @@ import { AsyncPipe, NgFor } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import {
   AfterViewInit,
+  ChangeDetectorRef,
   Component,
   ElementRef,
+  Input,
   OnDestroy,
   OnInit,
   ViewChild,
 } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faStar, faStarHalfAlt } from '@fortawesome/free-solid-svg-icons';
-import { ProductModel, ProductService } from '@shared/services';
+import {
+  CartModel,
+  CartService,
+  ProductModel,
+  ProductService,
+  ToastrCustomModule,
+  ToastCustomService,
+} from '@shared/services';
 import KeenSlider, { KeenSliderInstance } from 'keen-slider';
-import { Observable, map } from 'rxjs';
+import { Observable, map, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-products',
@@ -22,23 +31,61 @@ import { Observable, map } from 'rxjs';
     '../../../../node_modules/keen-slider/keen-slider.min.css',
   ],
   standalone: true,
-  imports: [NgFor, AsyncPipe, FontAwesomeModule, HttpClientModule],
+  imports: [
+    NgFor,
+    AsyncPipe,
+    FontAwesomeModule,
+    HttpClientModule,
+    ToastrCustomModule,
+  ],
   providers: [ProductService],
 })
 export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
-  products$: Observable<ProductModel[]>;
-  constructor(private readonly productService: ProductService) {}
+  constructor(
+    private readonly productService: ProductService,
+    private readonly cartService: CartService,
+    private readonly toastService: ToastCustomService
+  ) {}
   faStar = faStar;
   faStarHalfAlt = faStarHalfAlt;
+  products$: Observable<ProductModel[]>;
+  cart: CartModel;
+  cartSubscription: Subscription;
 
   ngOnInit() {
     this.products$ = this.productService
       .getProducts$({
-        category_id: '61ea6956-88de-474d-a8c8-ad8905e59252'
-
+        category_id: 'd7c31870-9ac6-455a-a5d7-f41e60956c34',
       })
       .pipe(map((response) => response.products));
+
+    this.cartSubscription = this.cartService.cart$.subscribe({
+      next: (response) => {
+        this.cart = response;
+      },
+    });
   }
+
+  ngOnDestroy(): void {
+    this.cartSubscription.unsubscribe();
+  }
+
+  addToCart(product: ProductModel) {
+    if (this.cart) {
+      this.cartService.addToCart$(this.cart, product).subscribe({
+        next: (response) => {
+          this.toastService.success('Added to cart');
+          window.location.reload();
+        },
+        error: (error) => {
+          throw error;
+        },
+      });
+    } else {
+      this.toastService.error('Something went wrong');
+    }
+  }
+
   @ViewChild('sliderRef') sliderRef: ElementRef<HTMLElement>;
   slider: KeenSliderInstance;
 
@@ -63,7 +110,7 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
           '(min-width: 1024px)': {
             slides: {
               perView: 3,
-              spacing: 50,
+              spacing: 0,
             },
           },
         },
@@ -99,9 +146,5 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
         },
       ]
     );
-  }
-
-  ngOnDestroy() {
-    if (this.slider) this.slider.destroy();
   }
 }

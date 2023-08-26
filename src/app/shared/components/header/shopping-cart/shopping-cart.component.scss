@@ -42,9 +42,15 @@
       padding-bottom: 1rem;
       font-weight: bolder;
     }
-    span {
+    span,
+    .amount {
       color: var(--light-color);
       font-size: 1.6rem;
+    }
+    .amount {
+      margin-left: 1rem;
+      width: 4rem;
+      border: 1px solid var(--light-color);
     }
     .quantity {
       padding-left: 1rem;
@@ -57,4 +63,10 @@
   padding: 1rem 0;
   text-align: center;
   color: var(--black);
+}
+
+.test {
+  img {
+    width: 25px;
+  }
 }

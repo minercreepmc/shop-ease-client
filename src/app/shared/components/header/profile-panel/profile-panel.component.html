@@ -1,11 +1,57 @@
-<div class="profile-panel" *ngIf="user$ | async as user">
+<form
+  [formGroup]="userForm"
+  class="profile-panel"
+  *ngIf="user$ | async as user"
+>
   <div class="user-info">
     <p>
-      Username: <span>{{ user.username }}</span>
+      Username:
+      <span>{{ user.username }}</span>
     </p>
     <p>
-      Fullname: <span>{{ user.full_name }}</span>
+      Fullname:
+      <input
+        formControlName="fullName"
+        type="text"
+        value="{{ user.full_name }}"
+      />
+    </p>
+
+    <p>
+      Address:
+      <input formControlName="address" type="text" value="{{ user.address }}" />
     </p>
   </div>
-  <button class="btn" (click)="logOut()">Logout</button>
-</div>
+
+  <div>
+    <fa-icon
+      *ngIf="!isEditable"
+      (click)="onEditClick()"
+      class="edit"
+      [icon]="faEdit"
+    ></fa-icon>
+
+    <fa-icon
+      *ngIf="!isEditable"
+      (click)="onOrderClick()"
+      class="cancel"
+      [icon]="faReceipt"
+      routerLink="/orders"
+    ></fa-icon>
+
+    <fa-icon
+      *ngIf="isEditable"
+      (click)="onCancelClick()"
+      class="cancel"
+      [icon]="faX"
+    ></fa-icon>
+
+    <fa-icon
+      *ngIf="isEditable"
+      (click)="onCheckClick()"
+      class="check"
+      [icon]="faCheck"
+    ></fa-icon>
+    <button class="btn" (click)="logOut()">Logout</button>
+  </div>
+</form>
