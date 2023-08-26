@@ -9,7 +9,7 @@ import { StorageService } from '@shared/services/storage.service';
   styleUrls: ['./login-form.component.scss'],
   standalone: true,
   imports: [ReactiveFormsModule],
-  providers: [AuthService, StorageService],
+  providers: [StorageService],
 })
 export class LoginFormComponent implements OnInit {
   constructor(

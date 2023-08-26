@@ -10,7 +10,6 @@ import { AuthService } from '@shared/services/auth.service';
   styleUrls: ['./register-form.component.scss'],
   standalone: true,
   imports: [ReactiveFormsModule, HttpClientModule, ToastrCustomModule],
-  providers: [AuthService],
 })
 export class RegisterFormComponent {
   risSuccessful = false;

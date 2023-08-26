@@ -8,9 +8,11 @@ import {
   UpdateProfileHttpResponse,
   UserModel,
 } from './auth.service.dto';
-import { catchError, Observable, throwError } from 'rxjs';
+import { catchError, Observable, throwError, map } from 'rxjs';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class AuthService {
   constructor(private readonly http: HttpClient) {}
   registerMemberUrl = v1ApiEndpoints.registerMember;
@@ -31,13 +33,13 @@ export class AuthService {
       .pipe(catchError(this.handleError));
   }
 
-  logOut() {
+  logOut$() {
     return this.http
       .post(this.logOutUrl, {})
       .pipe(catchError(this.handleError));
   }
 
-  getProfile(): Observable<UserModel> {
+  getProfile$(): Observable<UserModel> {
     return this.http
       .get<UserModel>(this.getProfileUrl, {})
       .pipe(catchError(this.handleError));
@@ -48,6 +50,10 @@ export class AuthService {
     return this.http
       .put<UpdateProfileHttpResponse>(url, dto)
       .pipe(catchError(this.handleError));
+  }
+
+  isLoggedIn$(): Observable<boolean> {
+    return this.getProfile$().pipe(map((user) => !!user));
   }
 
   private handleError(error: HttpErrorResponse) {

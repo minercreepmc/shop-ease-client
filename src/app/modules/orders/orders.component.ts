@@ -11,7 +11,5 @@ import { map, Observable } from 'rxjs';
 export class OrdersComponent implements OnInit {
   orders$: Observable<OrderModel[]>;
   constructor(private readonly orderService: OrderService) {}
-  ngOnInit() {
-    console.log('oke');
-  }
+  ngOnInit() {}
 }

@@ -37,7 +37,6 @@ import { Observable } from 'rxjs';
     ToastrCustomModule,
     RouterLink,
   ],
-  providers: [AuthService],
 })
 export class ProfilePanelComponent implements OnInit {
   user$: Observable<UserModel>;
@@ -61,7 +60,7 @@ export class ProfilePanelComponent implements OnInit {
       fullName: new FormControl({ value: '', disabled: true }),
       address: new FormControl({ value: '', disabled: true }),
     });
-    this.user$ = this.authService.getProfile();
+    this.user$ = this.authService.getProfile$();
     this.user$.subscribe({
       next: (user) => {
         this.userForm.patchValue({
@@ -75,7 +74,7 @@ export class ProfilePanelComponent implements OnInit {
   }
 
   logOut() {
-    this.authService.logOut().subscribe({
+    this.authService.logOut$().subscribe({
       next: () => {
         this.storageService.clean();
         window.location.reload();
