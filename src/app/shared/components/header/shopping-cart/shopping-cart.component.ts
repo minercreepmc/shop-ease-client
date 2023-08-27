@@ -102,6 +102,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
     const dto: CreateOrderHttpRequest = {
       cartId: this.cart.id,
       address: 'Just testing',
+      totalPrice: this.cart.total_price,
     };
     this.orderService.checkOut$(dto).subscribe({
       next: (response) => {

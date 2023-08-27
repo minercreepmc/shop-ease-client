@@ -10,5 +10,6 @@ export class V1OrderModel {
   cart_id: string;
   address: string;
   status: OrderStatusEnum;
+  total_price: number;
   id: string;
 }

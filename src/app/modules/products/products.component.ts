@@ -2,10 +2,8 @@ import { AsyncPipe, NgFor } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import {
   AfterViewInit,
-  ChangeDetectorRef,
   Component,
   ElementRef,
-  Input,
   OnDestroy,
   OnInit,
   ViewChild,
@@ -55,7 +53,7 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit() {
     this.products$ = this.productService
       .getProducts$({
-        category_id: 'd7c31870-9ac6-455a-a5d7-f41e60956c34',
+        category_id: '69a04751-4998-4fde-8efb-a7f777aca05a',
       })
       .pipe(map((response) => response.products));
 

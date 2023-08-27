@@ -11,6 +11,8 @@ import {
   CreateOrderHttpResponse,
   GetOrderHttpQuery,
   GetOrderHttpResponse,
+  GetOrdersHttpQuery,
+  GetOrdersHttpResponse,
 } from './order.service.dto';
 
 @Injectable({
@@ -20,9 +22,16 @@ export class OrderService {
   constructor(private readonly http: HttpClient) {}
   private readonly createOrderUrlderUrl = v1ApiEndpoints.createOrder;
   private readonly getOrderUrl = v1ApiEndpoints.getOrder;
+  private readonly getOrdersUrl = v1ApiEndpoints.getOrders;
 
   getOrder$(query?: GetOrderHttpQuery): Observable<GetOrderHttpResponse> {
     return this.http.get<GetOrderHttpResponse>(this.getOrderUrl, {
+      params: query as HttpParams,
+    });
+  }
+
+  getOrders$(query?: GetOrdersHttpQuery): Observable<GetOrdersHttpResponse> {
+    return this.http.get<GetOrdersHttpResponse>(this.getOrdersUrl, {
       params: query as HttpParams,
     });
   }
