@@ -7,6 +7,7 @@
         <th>ID</th>
         <th>Status</th>
         <th>Total Price</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody *ngIf="orders$ | async as orders">
@@ -14,6 +15,13 @@
         <td>{{ order.id }}</td>
         <td>{{ order.status }}</td>
         <td>${{ order.total_price }}</td>
+        <td>
+          <fa-icon
+            *ngIf="onCancelShow(order.status)"
+            [icon]="faTimes"
+            (click)="onCancelOrder(order.id)"
+          ></fa-icon>
+        </td>
       </tr>
     </tbody>
   </table>

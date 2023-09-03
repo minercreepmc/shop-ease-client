@@ -1,5 +1,6 @@
 import { AsyncPipe, NgClass, NgIf } from '@angular/common';
 import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
   faBars,
@@ -9,8 +10,7 @@ import {
   faUser,
   faUserCircle,
 } from '@fortawesome/free-solid-svg-icons';
-import { CartModel, CartService, StorageService } from '@shared/services';
-import { Observable } from 'rxjs';
+import { AuthService, CartService } from '@shared/services';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { ProfilePanelComponent } from './profile-panel/profile-panel.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
@@ -32,14 +32,12 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
     ProfilePanelComponent,
     NgIf,
     AsyncPipe,
+    RouterLink,
   ],
-  providers: [StorageService, CartService],
+  providers: [],
 })
 export class HeaderComponent implements OnInit {
-  constructor(
-    private readonly storageService: StorageService,
-    private readonly cartService: CartService
-  ) {}
+  constructor(private readonly authService: AuthService) {}
   faBars = faBars;
   faShoppingBasket = faShoppingBasket;
   faSearch = faSearch;
@@ -64,11 +62,11 @@ export class HeaderComponent implements OnInit {
     this.isRegisterActive = false;
     this.isProfileActive = false;
 
-    const isLoggedIn = this.storageService.isLoggedIn();
-
-    if (isLoggedIn) {
-      this.isLoggedIn = true;
-    }
+    this.authService.isLoggedIn$().subscribe({
+      next: (response) => {
+        this.isLoggedIn = response;
+      },
+    });
   }
 
   toggleSearch() {

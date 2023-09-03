@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpCustomException, v1ApiEndpoints } from '@api/http';
 import { V1GetCartHttpResponse } from '@api/http/v1';
 import { catchError, Subject, tap, throwError } from 'rxjs';
+import { AuthService } from './auth.service';
 import {
   CartModel,
   GetCartResponseDto,
@@ -15,8 +16,17 @@ import { ProductModel } from './product.service.dto';
   providedIn: 'root',
 })
 export class CartService {
-  constructor(private readonly http: HttpClient) {
-    this.loadCart$().subscribe();
+  constructor(
+    private readonly http: HttpClient,
+    private readonly authService: AuthService
+  ) {
+    this.authService.isLoggedIn$().subscribe({
+      next: (response) => {
+        if (response) {
+          this.loadCart$().subscribe();
+        }
+      },
+    });
   }
   getCartUrl = v1ApiEndpoints.getCart;
   updateCartUrl = v1ApiEndpoints.updateCart;

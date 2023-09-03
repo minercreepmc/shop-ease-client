@@ -8,7 +8,7 @@ import {
   UpdateProfileHttpResponse,
   UserModel,
 } from './auth.service.dto';
-import { catchError, Observable, throwError, map } from 'rxjs';
+import { catchError, Observable, throwError, map, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -53,7 +53,10 @@ export class AuthService {
   }
 
   isLoggedIn$(): Observable<boolean> {
-    return this.getProfile$().pipe(map((user) => !!user));
+    return this.getProfile$().pipe(
+      map((user) => !!user),
+      catchError(() => of(false))
+    );
   }
 
   private handleError(error: HttpErrorResponse) {

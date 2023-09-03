@@ -70,6 +70,9 @@ export class ProfilePanelComponent implements OnInit {
         this.userForm.get('fullName')?.disable();
         this.userForm.get('address')?.disable();
       },
+      error: (error) => {
+        console.log(error);
+      },
     });
   }
 

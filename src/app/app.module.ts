@@ -16,6 +16,7 @@ import { HttpCustomExceptionHandler } from './core/exception-handlers';
 import { StorageService, ToastrCustomModule } from '@shared/services';
 import { httpInterceptorProviders } from './core/interceptors';
 import { OrdersComponent } from './modules/orders/orders.component';
+import { ProductFilterComponent } from '@modules/product-filter/product-filter.component';
 
 library.add(faFacebookF, faTwitter, faPhone, faSearch);
 
@@ -39,6 +40,7 @@ const exceptionHandlers: Provider[] = [
     CategoriesComponent,
     ToastrCustomModule,
     OrdersComponent,
+    ProductFilterComponent,
   ],
   providers: [...exceptionHandlers, httpInterceptorProviders, StorageService],
   bootstrap: [AppComponent],

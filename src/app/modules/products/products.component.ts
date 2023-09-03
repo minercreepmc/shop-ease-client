@@ -53,7 +53,7 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit() {
     this.products$ = this.productService
       .getProducts$({
-        category_id: '69a04751-4998-4fde-8efb-a7f777aca05a',
+        category_id: 'a8a5d7f4-4691-4524-b1e3-290dcb7736b3',
       })
       .pipe(map((response) => response.products));
 

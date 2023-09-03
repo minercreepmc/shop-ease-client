@@ -2,6 +2,7 @@ export class V1CreateOrderHttpRequest {
   cartId: string;
   address: string;
   totalPrice: number;
+  productIds: string[];
 }
 
 export class V1CreateOrderHttpResponse {

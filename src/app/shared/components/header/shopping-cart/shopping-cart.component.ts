@@ -1,15 +1,6 @@
 import { AsyncPipe, NgClass, NgFor, NgIf } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  Input,
-  OnChanges,
-  OnDestroy,
-  OnInit,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import {
@@ -52,6 +43,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.cartSubscription = this.cartService.cart$.subscribe({
       next: (cart) => {
+        console.log(cart);
         this.cart = cart;
       },
       error: (error) => {
@@ -103,6 +95,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
       cartId: this.cart.id,
       address: 'Just testing',
       totalPrice: this.cart.total_price,
+      productIds: this.cart.items.map((item) => item.product.id),
     };
     this.orderService.checkOut$(dto).subscribe({
       next: (response) => {

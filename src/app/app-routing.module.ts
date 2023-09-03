@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from '@modules/home/home.component';
 import { OrdersComponent } from '@modules/orders/orders.component';
-import { AuthGuard } from './guards/auth.guard';
+import { ProductFilterComponent } from '@modules/product-filter/product-filter.component';
 
 const routes: Routes = [
   {
@@ -10,9 +10,12 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
+    path: 'products',
+    component: ProductFilterComponent,
+  },
+  {
     path: 'orders',
     component: OrdersComponent,
-    canActivate: [AuthGuard],
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
