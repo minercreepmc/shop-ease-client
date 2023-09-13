@@ -69,7 +69,9 @@ export class RegisterFormComponent {
             this.toast.error('Username not valid');
           } else if (m.code === UserDomainExceptionCodes.FullNameDoesNotValid) {
             this.toast.error('Full name not valid');
-          } else if (m.code === UserDomainExceptionCodes.UsernameAlreadyExists) {
+          } else if (
+            m.code === UserDomainExceptionCodes.UsernameAlreadyExists
+          ) {
             this.toast.error('Username already exists');
           }
         });

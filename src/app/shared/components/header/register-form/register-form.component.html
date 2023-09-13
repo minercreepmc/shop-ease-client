@@ -1,6 +1,11 @@
 <form class="register-form" [formGroup]="registerForm" (submit)="onSubmit()">
   <h3>Create an Account</h3>
-  <input formControlName="fullName" type="text" placeholder="Your full name" class="box" />
+  <input
+    formControlName="fullName"
+    type="text"
+    placeholder="Your full name"
+    class="box"
+  />
   <input
     formControlName="username"
     type="username"
