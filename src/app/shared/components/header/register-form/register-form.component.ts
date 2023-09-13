@@ -1,6 +1,13 @@
 import { HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { HttpCustomException } from '@api/http';
+import { UserDomainExceptionCodes } from '@api/http/v1/exceptions/product.domain-exception-code';
 import { ToastCustomService, ToastrCustomModule } from '@shared/services';
 import { AuthService } from '@shared/services/auth.service';
 
@@ -19,12 +26,13 @@ export class RegisterFormComponent {
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly authService: AuthService,
-    private readonly toast: ToastCustomService
+    private readonly toast: ToastCustomService,
   ) {
     this.registerForm = this.formBuilder.group({
-      username: '',
-      password: '',
-      confirmPassword: '',
+      fullName: [''],
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+      confirmPassword: ['', [Validators.required]],
     });
   }
 
@@ -53,8 +61,18 @@ export class RegisterFormComponent {
         this.risSuccessful = true;
         this.registerForm.reset();
       },
-      error: (err) => {
-        this.isRegisterFaileded = true;
+      error: (err: HttpCustomException) => {
+        err.message.forEach((m) => {
+          if (m.code === UserDomainExceptionCodes.PasswordDoesNotValid) {
+            this.toast.error('Password not valid');
+          } else if (m.code === UserDomainExceptionCodes.UsernameDoesNotValid) {
+            this.toast.error('Username not valid');
+          } else if (m.code === UserDomainExceptionCodes.FullNameDoesNotValid) {
+            this.toast.error('Full name not valid');
+          } else if (m.code === UserDomainExceptionCodes.UsernameAlreadyExists) {
+            this.toast.error('Username already exists');
+          }
+        });
       },
     });
   }
