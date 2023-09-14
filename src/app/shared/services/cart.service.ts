@@ -18,7 +18,7 @@ import { ProductModel } from './product.service.dto';
 export class CartService {
   constructor(
     private readonly http: HttpClient,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
   ) {
     this.authService.isLoggedIn$().subscribe({
       next: (response) => {
@@ -42,7 +42,7 @@ export class CartService {
       tap((response: GetCartResponseDto) => {
         this.cart.next(response);
       }),
-      catchError(this.handleError)
+      catchError(this.handleError),
     );
   }
 
@@ -51,33 +51,32 @@ export class CartService {
   }
 
   updateCart$(dto: UpdateCartRequestDto) {
+    console.log(dto);
     return this.http.put<UpdateCartResponseDto>(this.updateCartUrl, dto);
   }
 
-  addToCart$(currentCartValue: CartModel, product: ProductModel) {
+  addToCart$(currentCartValue: CartModel, productId: string) {
     let updateCartRequest: UpdateCartRequestDto = {
       items: currentCartValue.items.map((item) => {
         return {
-          productId: item.product.id,
+          productId: item.product_id,
           amount: item?.amount,
-          price: item.product.price,
           cartId: currentCartValue.id,
         };
       }),
     };
 
     const updateCartRequestMap = new Map(
-      updateCartRequest.items.map((item) => [item?.productId, item])
+      updateCartRequest.items.map((item) => [item?.productId, item]),
     );
 
-    if (updateCartRequestMap.has(product.id)) {
-      const existingItem = updateCartRequestMap.get(product.id)!;
+    if (updateCartRequestMap.has(productId)) {
+      const existingItem = updateCartRequestMap.get(productId)!;
       existingItem.amount += 1;
     } else {
-      updateCartRequestMap.set(product.id, {
-        productId: product.id,
+      updateCartRequestMap.set(productId, {
+        productId,
         amount: 1,
-        price: product.price,
         cartId: currentCartValue.id,
       });
     }
@@ -93,15 +92,18 @@ export class CartService {
           total_price: response.totalPrice,
           user_id: response.userId,
           items: response.items.map((item) => ({
-            product_id: item.product.id,
-            product: item.product,
+            product_id: item.productId,
+            name: item.name,
+            price: item.price,
+            image_url: item.imageUrl,
+            discount: item.discount,
+            total_price: item.totalPrice,
             amount: item.amount,
             cartId: response.id,
           })),
         };
         this.cart.next(updateCart);
       }),
-      catchError(this.handleError)
     );
   }
 
@@ -109,16 +111,16 @@ export class CartService {
     let updateCartRequest: UpdateCartRequestDto = {
       items: currentCartValue.items.map((item) => {
         return {
-          productId: item.product.id,
+          productId: item.product_id,
           amount: item?.amount,
-          price: item.product.price,
+          price: item.price,
           cartId: currentCartValue.id,
         };
       }),
     };
 
     const updateCartRequestMap = new Map(
-      updateCartRequest.items.map((item) => [item?.productId, item])
+      updateCartRequest.items.map((item) => [item?.productId, item]),
     );
 
     updateCartRequestMap.delete(productId);
@@ -134,41 +136,43 @@ export class CartService {
           total_price: response.totalPrice,
           user_id: response.userId,
           items: response.items.map((item) => ({
-            product_id: item.product.id,
-            product: item.product,
+            product_id: item.productId,
             amount: item.amount,
+            total_price: item.totalPrice,
+            price: item.price,
+            discount: item.discount,
             cartId: response.id,
+            name: item.name,
           })),
         };
         this.cart.next(updateCart);
-      })
+      }),
     );
   }
 
   replaceAmount$(
     currentCartValue: CartModel,
-    product: ProductModel,
-    amount: number
+    productId: string,
+    amount: number,
   ) {
     let updateCartRequest: UpdateCartRequestDto = {
       items: currentCartValue.items.map((item) => {
         return {
-          productId: item.product.id,
+          productId: item.product_id,
           amount: item?.amount,
-          price: item.product.price,
+          price: item.price,
           cartId: currentCartValue.id,
         };
       }),
     };
 
     const updateCartRequestMap = new Map(
-      updateCartRequest.items.map((item) => [item?.productId, item])
+      updateCartRequest.items.map((item) => [item?.productId, item]),
     );
 
-    updateCartRequestMap.set(product.id, {
-      productId: product.id,
+    updateCartRequestMap.set(productId, {
+      productId,
       amount: amount,
-      price: product.price,
       cartId: currentCartValue.id,
     });
 
@@ -183,18 +187,22 @@ export class CartService {
           total_price: response.totalPrice,
           user_id: response.userId,
           items: response.items.map((item) => ({
-            product_id: item.product.id,
-            product: item.product,
+            product_id: item.productId,
             amount: item.amount,
+            total_price: item.totalPrice,
+            price: item.price,
+            discount: item.discount,
             cartId: response.id,
+            name: item.name,
           })),
         };
         this.cart.next(updateCart);
-      })
+      }),
     );
   }
 
   private handleError(error: HttpErrorResponse) {
+    console.log(error);
     return throwError(() => new HttpCustomException(error));
   }
 }

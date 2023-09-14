@@ -54,6 +54,7 @@ export class ProductService {
   }
 
   getProducts$(query?: GetProductsQuery): Observable<GetProductsResponseDto> {
+    console.log(query);
     // simulate server latency with 2 second delay
     return this.http
       .get<GetProductsResponseDto>(this.getAllUrl, {

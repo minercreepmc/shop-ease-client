@@ -1,5 +1,3 @@
-import { V1ProductModel } from './product.model.v1';
-
 export class V1CartModel {
   id: string;
   user_id: string;
@@ -8,8 +6,11 @@ export class V1CartModel {
 }
 
 export class V1CartItemModel {
+  name: string;
   amount: number;
   product_id: string;
-  product: V1ProductModel;
-  cartId: string;
+  total_price: number;
+  discount: number;
+  price: number;
+  image_url?: string;
 }

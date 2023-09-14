@@ -7,6 +7,8 @@ import {
   OnDestroy,
   OnInit,
   ViewChild,
+  signal,
+  effect,
 } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faStar, faStarHalfAlt } from '@fortawesome/free-solid-svg-icons';
@@ -17,9 +19,18 @@ import {
   ProductService,
   ToastrCustomModule,
   ToastCustomService,
+  CategoryService,
 } from '@shared/services';
 import KeenSlider, { KeenSliderInstance } from 'keen-slider';
-import { Observable, map, Subscription } from 'rxjs';
+import { Observable, map, Subscription, Subject, BehaviorSubject } from 'rxjs';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+
+interface Category {
+  value: string;
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-products',
@@ -35,48 +46,82 @@ import { Observable, map, Subscription } from 'rxjs';
     FontAwesomeModule,
     HttpClientModule,
     ToastrCustomModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
   ],
-  providers: [ProductService],
+  providers: [ProductService, CategoryService],
 })
 export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private readonly productService: ProductService,
     private readonly cartService: CartService,
-    private readonly toastService: ToastCustomService
-  ) {}
+    private readonly toastService: ToastCustomService,
+    private readonly categoryService: CategoryService,
+  ) {
+    effect(() => {
+      this.products$ = this.productService
+        .getProducts$({
+          category_id: this.currentCategoryId(),
+        })
+        .pipe(map((response) => response.products));
+    });
+  }
   faStar = faStar;
   faStarHalfAlt = faStarHalfAlt;
   products$: Observable<ProductModel[]>;
   cart: CartModel;
   cartSubscription: Subscription;
 
-  ngOnInit() {
-    this.products$ = this.productService
-      .getProducts$({
-        category_id: 'a8a5d7f4-4691-4524-b1e3-290dcb7736b3',
-      })
-      .pipe(map((response) => response.products));
+  categories: Category[] = [];
+  currentCategoryId = signal('');
 
+  ngOnInit() {
     this.cartSubscription = this.cartService.cart$.subscribe({
       next: (response) => {
         this.cart = response;
       },
     });
+
+    this.categoryService
+      .getCategories$()
+      .pipe(
+        map((response) => {
+          return response.categories.map((category) => ({
+            value: category.id,
+            viewValue: category.name,
+          }));
+        }),
+      )
+      .subscribe({
+        next: (response) => {
+          this.categories = response;
+          this.currentCategoryId.set(this.categories[0].value);
+        },
+      });
   }
 
   ngOnDestroy(): void {
     this.cartSubscription.unsubscribe();
   }
 
-  addToCart(product: ProductModel) {
+  fetchNewProductsByCategory(categoryId: string) {
+    this.currentCategoryId.set(categoryId);
+  }
+
+  addToCart(productId: string) {
     if (this.cart) {
-      this.cartService.addToCart$(this.cart, product).subscribe({
+      this.cartService.addToCart$(this.cart, productId).subscribe({
         next: (response) => {
+          console.log(response);
           this.toastService.success('Added to cart');
-          window.location.reload();
         },
         error: (error) => {
+          console.log(error);
           throw error;
+        },
+        complete: () => {
+          window.location.reload();
         },
       });
     } else {
@@ -142,7 +187,7 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
           slider.on('animationEnded', nextTimeout);
           slider.on('updated', nextTimeout);
         },
-      ]
+      ],
     );
   }
 }

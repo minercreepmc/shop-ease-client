@@ -38,7 +38,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   constructor(
     private readonly cartService: CartService,
     private readonly orderService: OrderService,
-    private readonly toast: ToastCustomService
+    private readonly toast: ToastCustomService,
   ) {}
   ngOnInit(): void {
     this.cartSubscription = this.cartService.cart$.subscribe({
@@ -56,14 +56,14 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
     this.cartSubscription.unsubscribe();
   }
 
-  onChange(product: ProductModel, $event: any) {
+  onChange(productId: string, $event: any) {
     this.cartService.getCart$().subscribe({
       next: (cart) => {
         this.cartService
           .replaceAmount$(
             cart,
-            product,
-            Number(($event.target as HTMLInputElement)?.value)
+            productId,
+            Number(($event.target as HTMLInputElement)?.value),
           )
           .subscribe({
             next: (response) => {
@@ -95,7 +95,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
       cartId: this.cart.id,
       address: 'Just testing',
       totalPrice: this.cart.total_price,
-      productIds: this.cart.items.map((item) => item.product.id),
+      productIds: this.cart.items.map((item) => item.product_id),
     };
     this.orderService.checkOut$(dto).subscribe({
       next: (response) => {

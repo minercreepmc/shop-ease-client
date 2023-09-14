@@ -1,5 +1,18 @@
 <section class="products" id="products">
   <h1 class="heading">Our <span>Products</span></h1>
+  <mat-form-field>
+    <mat-label>Categories</mat-label>
+    <mat-select>
+      <mat-option
+        *ngFor="let category of categories"
+        [value]="category.value"
+        (click)="fetchNewProductsByCategory(category.value)"
+      >
+        {{ category.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
   <div class="keen-slider product-slider" #sliderRef>
     <div
       class="box keen-slider__slide"
@@ -19,7 +32,7 @@
         <fa-icon [icon]="faStarHalfAlt"></fa-icon>
       </div>
 
-      <button class="btn" (click)="addToCart(product)">Add To Cart</button>
+      <button class="btn" (click)="addToCart(product.id)">Add To Cart</button>
     </div>
   </div>
 </section>
