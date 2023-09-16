@@ -3,26 +3,26 @@
     ><fa-icon [icon]="faShoppingBasket"></fa-icon>ShopEase</a
   >
 
-  <nav class="navbar" [ngClass]="isMenuActive ? 'active' : ''">
-    <a routerLink="/home">Home</a>
-    <a href="#">Features</a>
-    <a routerLink="/products">Products</a>
-    <a href="#">Categories</a>
-    <a href="#">Review</a>
-    <a href="#">Blog</a>
-  </nav>
+  <!-- <nav class="navbar" [ngClass]="isMenuActive ? 'active' : ''"> -->
+  <!--   <a routerLink="/home">Home</a> -->
+  <!--   <a href="#">Features</a> -->
+  <!--   <a routerLink="/products">Products</a> -->
+  <!--   <a href="#">Categories</a> -->
+  <!--   <a href="#">Review</a> -->
+  <!--   <a href="#">Blog</a> -->
+  <!-- </nav> -->
 
   <div class="icons">
     <fa-icon [icon]="faBars" id="menu-btn" (click)="toggleMenu()"></fa-icon>
-    <fa-icon
-      [icon]="faSearch"
-      id="search-btn"
-      (click)="toggleSearch()"
-    ></fa-icon>
+    <!-- <fa-icon -->
+    <!--   [icon]="faSearch" -->
+    <!--   id="search-btn" -->
+    <!--   (click)="toggleSearch()" -->
+    <!-- ></fa-icon> -->
     <fa-icon
       [icon]="faShoppingCart"
       id="cart-btn"
-      (click)="toggleCart()"
+      (click)="helloWorld()"
     ></fa-icon>
     <span *ngIf="!isLoggedIn">
       <fa-icon [icon]="faUser" id="login-btn" (click)="toggleLogin()"></fa-icon>

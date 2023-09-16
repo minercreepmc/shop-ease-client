@@ -5,11 +5,11 @@
 >
   <div class="user-info">
     <p>
-      Username:
+      Tên đăng nhập:
       <span>{{ user.username }}</span>
     </p>
     <p>
-      Fullname:
+      Tên đầy đủ:
       <input
         formControlName="fullName"
         type="text"
@@ -18,7 +18,7 @@
     </p>
 
     <p>
-      Address:
+      Địa chỉ:
       <input formControlName="address" type="text" value="{{ user.address }}" />
     </p>
   </div>
@@ -31,13 +31,13 @@
       [icon]="faEdit"
     ></fa-icon>
 
-    <fa-icon
-      *ngIf="!isEditable"
-      (click)="onOrderClick()"
-      class="cancel"
-      [icon]="faReceipt"
-      routerLink="/orders"
-    ></fa-icon>
+    <!-- <fa-icon -->
+    <!--   *ngIf="!isEditable" -->
+    <!--   (click)="onOrderClick()" -->
+    <!--   class="cancel" -->
+    <!--   [icon]="faReceipt" -->
+    <!--   routerLink="/orders" -->
+    <!-- ></fa-icon> -->
 
     <fa-icon
       *ngIf="isEditable"
@@ -52,6 +52,6 @@
       class="check"
       [icon]="faCheck"
     ></fa-icon>
-    <button class="btn" (click)="logOut()">Logout</button>
+    <button class="btn" (click)="logOut()">Đăng xuất</button>
   </div>
 </form>

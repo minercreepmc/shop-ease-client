@@ -8,12 +8,11 @@ import {
   CartService,
   CreateOrderHttpRequest,
   OrderService,
-  ProductModel,
   StorageService,
   ToastCustomService,
   ToastrCustomModule,
 } from '@shared/services';
-import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-shopping-cart',

@@ -130,4 +130,8 @@ export class HeaderComponent implements OnInit {
     this.isRegisterActive = false;
     this.isProfileActive = false;
   }
+
+  helloWorld() {
+    console.log('helloWorld');
+  }
 }

@@ -1,7 +1,7 @@
 <section class="products" id="products">
-  <h1 class="heading">Our <span>Products</span></h1>
+  <h1 class="heading">Sản phẩm<span>của chúng tôi</span></h1>
   <mat-form-field>
-    <mat-label>Categories</mat-label>
+    <mat-label>Danh mục</mat-label>
     <mat-select>
       <mat-option (click)="fetchNewProductsByCategory('')">__</mat-option>
       <mat-option
@@ -41,7 +41,7 @@
         <fa-icon [icon]="faStarHalfAlt"></fa-icon>
       </div>
 
-      <button class="btn" (click)="addToCart(product.id)">Add To Cart</button>
+      <button class="btn" (click)="addToCart(product.id)">Thêm vào giỏ</button>
     </div>
   </div>
 </section>
