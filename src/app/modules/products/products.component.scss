@@ -31,6 +31,12 @@
       padding: 0.5rem 0;
     }
 
+    .old-price {
+      a {
+        text-decoration: line-through;
+      }
+    }
+
     .stars fa-icon {
       font-size: 1.7rem;
       color: var(--orange);

@@ -1,4 +1,4 @@
-import { AsyncPipe, NgFor } from '@angular/common';
+import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import {
   AfterViewInit,
@@ -22,7 +22,7 @@ import {
   CategoryService,
 } from '@shared/services';
 import KeenSlider, { KeenSliderInstance } from 'keen-slider';
-import { Observable, map, Subscription, Subject, BehaviorSubject } from 'rxjs';
+import { Observable, map, Subscription } from 'rxjs';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
@@ -42,6 +42,7 @@ interface Category {
   standalone: true,
   imports: [
     NgFor,
+    NgIf,
     AsyncPipe,
     FontAwesomeModule,
     HttpClientModule,
@@ -72,7 +73,6 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   products$: Observable<ProductModel[]>;
   cart: CartModel;
   cartSubscription: Subscription;
-
   categories: Category[] = [];
   currentCategoryId = signal('');
 
@@ -96,7 +96,6 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
       .subscribe({
         next: (response) => {
           this.categories = response;
-          this.currentCategoryId.set(this.categories[0].value);
         },
       });
   }
@@ -125,7 +124,7 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
         },
       });
     } else {
-      this.toastService.error('Something went wrong');
+      this.toastService.error('Please login first');
     }
   }
 

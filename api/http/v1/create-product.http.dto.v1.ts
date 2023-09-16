@@ -15,6 +15,7 @@ export class V1CreateProductHttpResponse {
   imageUrl?: string;
   categoryIds?: string[];
   discountId?: string;
+  discount: number;
   message?: string;
 
   constructor(options: Omit<V1CreateProductHttpResponse, 'message'>) {
@@ -23,6 +24,7 @@ export class V1CreateProductHttpResponse {
     this.price = options.price;
     this.description = options.description;
     this.imageUrl = options.imageUrl;
+    this.discount = options.discount || 0;
     this.categoryIds = options.categoryIds;
     this.discountId = options.discountId;
     this.message = 'Product created successfully';

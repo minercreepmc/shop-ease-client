@@ -11,11 +11,5 @@ export class V1ProductModel {
     name: string;
     description?: string;
   }[];
-  discount?: {
-    id: string;
-    name: string;
-    description?: string;
-    percentage: number;
-    active?: boolean;
-  };
+  discount: number;
 }

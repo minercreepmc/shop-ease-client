@@ -3,6 +3,7 @@
   <mat-form-field>
     <mat-label>Categories</mat-label>
     <mat-select>
+      <mat-option (click)="fetchNewProductsByCategory('')">__</mat-option>
       <mat-option
         *ngFor="let category of categories"
         [value]="category.value"
@@ -23,7 +24,15 @@
         alt=""
       />
       <h3>{{ product.name }}</h3>
-      <div class="price">${{ product.price }}</div>
+      <div *ngIf="product.discount">
+        <div class="old-price">
+          <a> ${{ product.price }} </a>
+        </div>
+        <div class="price">
+          ${{ product.price - product.price * (product.discount / 100) }}
+        </div>
+      </div>
+      <div *ngIf="!product.discount" class="price">${{ product.price }}</div>
       <div class="stars">
         <fa-icon [icon]="faStar"></fa-icon>
         <fa-icon [icon]="faStar"></fa-icon>

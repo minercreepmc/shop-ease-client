@@ -12,7 +12,9 @@
       />
       <div class="content">
         <h3>{{ item?.name }}</h3>
-        <span class="price">${{ item?.price }}/_</span>
+        <span class="price"
+          >${{ item.price - item.price * (item.discount / 100) }}/_</span
+        >
         <input
           class="amount"
           (change)="onChange(item.product_id, $event)"
