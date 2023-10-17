@@ -1,10 +1,9 @@
 import { AsyncPipe, NgClass, NgFor, NgIf } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { OrderService, StorageService } from '@shared/services';
-import { Subscription } from 'rxjs';
+import { OrderService } from '@shared/services';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -20,17 +19,13 @@ import { Subscription } from 'rxjs';
     HttpClientModule,
   ],
 })
-export class ShoppingCartComponent implements OnInit, OnDestroy {
+export class ShoppingCartComponent implements OnInit {
   faTrash = faTrash;
-  cartSubscription: Subscription;
   constructor(
     private readonly orderService: OrderService, //private readonly toast: ToastCustomService,
   ) {}
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
-  ngOnDestroy(): void {
-    this.cartSubscription.unsubscribe();
+    console.log('oke');
   }
 
   onChange(productId: string, $event: any) {

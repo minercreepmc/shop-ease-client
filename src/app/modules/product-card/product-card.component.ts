@@ -16,7 +16,6 @@ export class ProductCardComponent {
   faStarHalfAlt = faStarHalfAlt;
 
   @Input() product: ProductRO;
-
   @Output() addedToCart = new EventEmitter();
   onAddToCart(productId: string) {
     this.addedToCart.emit(productId);
