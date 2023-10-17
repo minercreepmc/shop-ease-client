@@ -1,54 +1,49 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from '@shared/services';
-import { StorageService } from '@shared/services/storage.service';
+import { FormsModule } from '@angular/forms';
+import { LogInDto } from '@dto';
+import { AuthService, ToastrCustomService } from '@shared/services';
 
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.scss'],
   standalone: true,
-  imports: [ReactiveFormsModule],
-  providers: [StorageService],
+  imports: [FormsModule],
 })
 export class LoginFormComponent implements OnInit {
   constructor(
-    private readonly formBuilder: FormBuilder,
-    private readonly authService: AuthService,
-    private readonly storageService: StorageService
-  ) {
-    this.loginForm = this.formBuilder.group({
-      username: '',
-      password: '',
-    });
-  }
-  loginForm: FormGroup;
-  isLoggedIn = false;
-  isLoginFailed = false;
+    private authService: AuthService,
+    private toast: ToastrCustomService,
+  ) {}
 
   @Output() registerClicked = new EventEmitter();
+  isLoggedIn = false;
+  logInDto = new LogInDto();
   registerClick() {
-    console.log('hey');
     this.registerClicked.emit();
   }
 
   ngOnInit(): void {
-    if (this.storageService.isLoggedIn()) {
-      this.isLoggedIn = true;
-    }
+    this.authService.isLoggedIn$().subscribe({
+      next: (isLoggedIn) => {
+        this.isLoggedIn = isLoggedIn;
+      },
+    });
   }
 
   onSubmit(): void {
-    this.authService.logIn$(this.loginForm.value).subscribe({
-      next: (response) => {
-        this.storageService.saveUser(response);
-        this.isLoginFailed = false;
-        this.isLoggedIn = true;
-        this.reloadPage();
+    this.authService.logIn$(this.logInDto).subscribe({
+      next: () => {
+        this.toast.success('Login success');
       },
-      error: (err) => {
-        this.isLoginFailed = true;
-        throw err;
+      error: (e) => {
+        e.error.message.forEach((m: any) => {
+          this.toast.error(m.error);
+        });
+        console.log(e);
+      },
+      complete: () => {
+        this.reloadPage();
       },
     });
   }

@@ -1,21 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from '@modules/home/home.component';
-import { OrdersComponent } from '@modules/orders/orders.component';
-import { ProductFilterComponent } from '@modules/product-filter/product-filter.component';
+import { ProductWithImagesRO } from '@ro';
+import { CategoriesResolver } from '@shared/resolver';
 
 const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
-  },
-  {
-    path: 'products',
-    component: ProductFilterComponent,
-  },
-  {
-    path: 'orders',
-    component: OrdersComponent,
+    resolve: {
+      products: ProductWithImagesRO,
+      categories: CategoriesResolver,
+    },
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];

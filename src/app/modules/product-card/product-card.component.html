@@ -1,0 +1,23 @@
+<div class="product-card">
+  <img
+    src="{{ product.image_urls[0] || '/assets/default-image.webp' }}"
+    alt=""
+  />
+  <h3>{{ product.name }}</h3>
+  <div *ngIf="product.discount">
+    <div class="old-price">
+      <a> ${{ product.price }} </a>
+    </div>
+    <div class="price">${{ product.new_price }}</div>
+  </div>
+  <div *ngIf="!product.discount" class="price">${{ product.price }}</div>
+  <div class="stars">
+    <fa-icon [icon]="faStar"></fa-icon>
+    <fa-icon [icon]="faStar"></fa-icon>
+    <fa-icon [icon]="faStar"></fa-icon>
+    <fa-icon [icon]="faStar"></fa-icon>
+    <fa-icon [icon]="faStarHalfAlt"></fa-icon>
+  </div>
+
+  <button class="btn" (click)="onAddToCart(product.id)">Add To Cart</button>
+</div>

@@ -10,13 +10,10 @@ import { faFacebookF, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { HeaderComponent } from '@shared/components/header/header.component';
 import { HomeComponent } from './modules/home/home.component';
 import { FeaturesComponent } from './modules/features/features.component';
-import { ProductsComponent } from './modules/products/products.component';
-import { CategoriesComponent } from './modules/categories/categories.component';
 import { HttpCustomExceptionHandler } from './core/exception-handlers';
-import { StorageService, ToastrCustomModule } from '@shared/services';
+import { AuthService } from '@shared/services';
 import { httpInterceptorProviders } from './core/interceptors';
-import { OrdersComponent } from './modules/orders/orders.component';
-import { ProductFilterComponent } from '@modules/product-filter/product-filter.component';
+import { ToastrCustomModule } from '@service/toastr';
 
 library.add(faFacebookF, faTwitter, faPhone, faSearch);
 
@@ -36,13 +33,9 @@ const exceptionHandlers: Provider[] = [
     HeaderComponent,
     HomeComponent,
     FeaturesComponent,
-    ProductsComponent,
-    CategoriesComponent,
     ToastrCustomModule,
-    OrdersComponent,
-    ProductFilterComponent,
   ],
-  providers: [...exceptionHandlers, httpInterceptorProviders, StorageService],
+  providers: [...exceptionHandlers, httpInterceptorProviders, AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

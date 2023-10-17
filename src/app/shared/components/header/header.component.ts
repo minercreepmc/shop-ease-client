@@ -1,5 +1,5 @@
 import { AsyncPipe, NgClass, NgIf } from '@angular/common';
-import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
@@ -10,9 +10,8 @@ import {
   faUser,
   faUserCircle,
 } from '@fortawesome/free-solid-svg-icons';
-import { AuthService, CartService } from '@shared/services';
+import { AuthService } from '@shared/services';
 import { LoginFormComponent } from './login-form/login-form.component';
-import { ProfilePanelComponent } from './profile-panel/profile-panel.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { SearchFormComponent } from './search-form/search-form.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
@@ -29,7 +28,6 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
     ShoppingCartComponent,
     LoginFormComponent,
     RegisterFormComponent,
-    ProfilePanelComponent,
     NgIf,
     AsyncPipe,
     RouterLink,
@@ -50,7 +48,6 @@ export class HeaderComponent implements OnInit {
   isLoginActive = false;
   isMenuActive = false;
   isRegisterActive = false;
-  isProfileActive = false;
 
   isLoggedIn = false;
 
@@ -60,7 +57,6 @@ export class HeaderComponent implements OnInit {
     this.isCartActive = false;
     this.isLoginActive = false;
     this.isRegisterActive = false;
-    this.isProfileActive = false;
 
     this.authService.isLoggedIn$().subscribe({
       next: (response) => {
@@ -75,7 +71,6 @@ export class HeaderComponent implements OnInit {
     this.isCartActive = false;
     this.isMenuActive = false;
     this.isRegisterActive = false;
-    this.isProfileActive = false;
   }
   toggleCart() {
     this.isCartActive = !this.isCartActive;
@@ -83,7 +78,6 @@ export class HeaderComponent implements OnInit {
     this.isLoginActive = false;
     this.isMenuActive = false;
     this.isRegisterActive = false;
-    this.isProfileActive = false;
   }
   toggleLogin() {
     this.isLoginActive = !this.isLoginActive;
@@ -91,7 +85,6 @@ export class HeaderComponent implements OnInit {
     this.isSearchActive = false;
     this.isMenuActive = false;
     this.isRegisterActive = false;
-    this.isProfileActive = false;
   }
 
   toggleMenu() {
@@ -100,7 +93,6 @@ export class HeaderComponent implements OnInit {
     this.isCartActive = false;
     this.isLoginActive = false;
     this.isRegisterActive = false;
-    this.isProfileActive = false;
   }
 
   toggleRegister() {
@@ -109,11 +101,9 @@ export class HeaderComponent implements OnInit {
     this.isSearchActive = false;
     this.isCartActive = false;
     this.isLoginActive = false;
-    this.isProfileActive = false;
   }
 
   toggleProfile() {
-    this.isProfileActive = !this.isProfileActive;
     this.isMenuActive = false;
     this.isSearchActive = false;
     this.isCartActive = false;
@@ -128,6 +118,5 @@ export class HeaderComponent implements OnInit {
     this.isCartActive = false;
     this.isLoginActive = false;
     this.isRegisterActive = false;
-    this.isProfileActive = false;
   }
 }

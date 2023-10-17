@@ -1,60 +1,53 @@
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpParams,
-} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpCustomException, v1ApiEndpoints } from '@api/http';
-import { catchError, Observable, throwError } from 'rxjs';
-import {
-  CreateOrderHttpRequest,
-  CreateOrderHttpResponse,
-  GetOrderHttpQuery,
-  GetOrderHttpResponse,
-  GetOrdersHttpQuery,
-  GetOrdersHttpResponse,
-  UpdateOrderHttpRequest,
-  UpdateOrderHttpResponse,
-} from './order.service.dto';
+import { ApiApplication } from '@constant';
+import { OrderRO } from '@ro';
+import { UpdateOrderDto } from '@dto';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { OrderModel } from '@model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OrderService {
   constructor(private readonly http: HttpClient) {}
-  private readonly createOrderUrlderUrl = v1ApiEndpoints.createOrder;
-  private readonly getOrderUrl = v1ApiEndpoints.getOrder;
-  private readonly getOrdersUrl = v1ApiEndpoints.getOrders;
-  private readonly updateOrderUrl = v1ApiEndpoints.updateOrder;
-
-  getOrder$(query?: GetOrderHttpQuery): Observable<GetOrderHttpResponse> {
-    return this.http.get<GetOrderHttpResponse>(this.getOrderUrl, {
-      params: query as HttpParams,
-    });
+  private orders = new BehaviorSubject<OrderRO[]>([]);
+  get orders$() {
+    return this.orders;
   }
 
-  getOrders$(query?: GetOrdersHttpQuery): Observable<GetOrdersHttpResponse> {
-    return this.http.get<GetOrdersHttpResponse>(this.getOrdersUrl, {
-      params: query as HttpParams,
-    });
+  setOrders$(orders: OrderRO[]) {
+    this.orders.next(orders);
   }
 
-  checkOut$(dto: CreateOrderHttpRequest): Observable<CreateOrderHttpResponse> {
-    return this.http
-      .post<CreateOrderHttpResponse>(this.createOrderUrlderUrl, dto)
-      .pipe(catchError(this.handleError));
+  getOrder$(id: string): Observable<OrderRO> {
+    return this.http.get<OrderRO>(
+      ApiApplication.ORDER.CONTROLLER +
+        '/' +
+        ApiApplication.ORDER.GET_ONE.replace(':orderId', id),
+    );
   }
 
-  updateOrder$(
-    id: string,
-    dto: UpdateOrderHttpRequest
-  ): Observable<UpdateOrderHttpResponse> {
-    return this.http
-      .put<UpdateOrderHttpResponse>(this.updateOrderUrl.replace(':id', id), dto)
-      .pipe(catchError(this.handleError));
+  getByMember$(): Observable<OrderRO[]> {
+    return this.http.get<OrderRO[]>(
+      ApiApplication.ORDER.CONTROLLER +
+        '/' +
+        ApiApplication.ORDER.GET_BY_MEMBER,
+    );
   }
 
-  private handleError(error: HttpErrorResponse) {
-    return throwError(() => new HttpCustomException(error));
+  updateOrder$(id: string, dto: UpdateOrderDto): Observable<OrderModel> {
+    return this.http.put<OrderModel>(
+      ApiApplication.ORDER.CONTROLLER +
+        '/' +
+        ApiApplication.ORDER.UPDATE.replace(':id', id),
+      dto,
+    );
+  }
+
+  getOrders$(): Observable<OrderRO[]> {
+    return this.http.get<OrderRO[]>(
+      ApiApplication.ORDER.CONTROLLER + '/' + ApiApplication.ORDER.GET_ALL,
+    );
   }
 }

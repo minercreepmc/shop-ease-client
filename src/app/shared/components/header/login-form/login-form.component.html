@@ -1,20 +1,20 @@
-<form class="login-form" [formGroup]="loginForm" (submit)="onSubmit()">
+<form class="login-form" (submit)="onSubmit()">
   <h3>Login Now</h3>
   <input
-    formControlName="username"
+    [(ngModel)]="logInDto.username"
+    name="username"
     type="text"
     placeholder="Your username"
     class="box"
   />
   <input
-    formControlName="password"
+    [(ngModel)]="logInDto.password"
+    name="password"
     type="password"
     placeholder="Your password"
     class="box"
   />
   <p>Forget your password <a href="#">Click here</a></p>
-  <p>
-    Don't have an account <a (click)="registerClick()">Create now</a>
-  </p>
+  <p>Don't have an account <a (click)="registerClick()">Create now</a></p>
   <button type="submit" class="btn">Submit</button>
 </form>

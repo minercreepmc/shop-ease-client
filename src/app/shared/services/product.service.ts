@@ -1,136 +1,112 @@
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpParams,
-} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpCustomException, v1ApiEndpoints } from '@api/http';
-import { createFormData } from '@shared/utils';
+import { ApiApplication } from '@constant';
+import { CreateProductDto, DeleteProductDtostos, UpdateProductDto } from '@dto';
+import { ProductModel } from '@model';
 import {
-  BehaviorSubject,
-  catchError,
-  first,
-  Observable,
-  tap,
-  throwError,
-} from 'rxjs';
-import {
-  CreateProductRequestDto,
-  CreateProductResponseDto,
-  GetProductQueryDto,
-  GetProductResponseDto,
-  GetProductsQuery,
-  GetProductsResponseDto,
-  ProductModel,
-  RemoveProductsRequestDto,
-  RemoveProductsResponseDto,
-  UpdateProductRequestDto,
-  UpdateProductResponseDto,
-} from './product.service.dto';
+  CreateProductRO,
+  ProductWithImagesRO,
+  ProductRO,
+  UpdateProductRO,
+} from '@ro';
+import { Observable, BehaviorSubject, tap } from 'rxjs';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class ProductService {
-  // TODO: setup proxy later;
-  createUrl = v1ApiEndpoints.createProduct;
-  removeUrl = v1ApiEndpoints.removeProducts;
-  getAllUrl = v1ApiEndpoints.getProducts;
-  getUrl = v1ApiEndpoints.getProduct;
-  updateUrl = v1ApiEndpoints.updateProduct;
+  constructor(private readonly http: HttpClient) {}
+  readonly products = new BehaviorSubject<any[]>([]);
 
-  readonly products = new BehaviorSubject<ProductModel[]>([]);
-
-  get products$(): Observable<ProductModel[]> {
-    return this.products.asObservable();
+  get products$(): BehaviorSubject<any[]> {
+    return this.products;
   }
 
-  loadProducts$(): Observable<GetProductsResponseDto> {
-    const productGetting$ = this.getProducts$().pipe(
-      tap((response: GetProductsResponseDto) =>
-        this.products.next(response.products),
-      ),
+  getProducts$(): Observable<any[]> {
+    return this.http.get<any[]>(
+      ApiApplication.PRODUCT.CONTROLLER + '/' + ApiApplication.PRODUCT.GET_ALL,
     );
-
-    return productGetting$;
   }
 
-  getProducts$(query?: GetProductsQuery): Observable<GetProductsResponseDto> {
-    console.log(query);
-    return this.http
-      .get<GetProductsResponseDto>(this.getAllUrl, {
-        params: query as HttpParams,
-      })
-      .pipe(catchError(this.handleError));
+  getProductsWithImages$(): Observable<ProductWithImagesRO[]> {
+    return this.http.post<ProductWithImagesRO[]>(
+      ApiApplication.PRODUCT.CONTROLLER +
+        '/' +
+        ApiApplication.PRODUCT.GET_ALL_WITH_IMAGES,
+      {},
+    );
   }
 
-  getProduct$(id: string): Observable<GetProductResponseDto> {
-    const url = this.getUrl.replace(':id', id);
-    const query: GetProductQueryDto = {
-      populate_details: true,
-    };
-    return this.http.get<GetProductResponseDto>(url, {
-      params: query as HttpParams,
-    });
+  setProducts$(products: any[]) {
+    this.products.next(products);
   }
 
-  createProduct$(
-    dto: CreateProductRequestDto,
-  ): Observable<CreateProductResponseDto> {
-    const formData = createFormData({
+  getProduct$(id: string): Observable<ProductRO> {
+    return this.http.get<ProductRO>(
+      ApiApplication.PRODUCT.CONTROLLER +
+        '/' +
+        ApiApplication.PRODUCT.GET_ONE.replace(':id', id),
+    );
+  }
+
+  createProduct$(dto: CreateProductDto): Observable<CreateProductRO> {
+    const productCreating$ = this.http.post<CreateProductRO>(
+      ApiApplication.PRODUCT.CONTROLLER + '/' + ApiApplication.PRODUCT.CREATE,
       dto,
-    });
-
-    const response$ = this.http.post<CreateProductResponseDto>(
-      this.createUrl,
-      formData,
     );
 
-    return response$.pipe(
-      first(),
-      tap((response: CreateProductResponseDto) => {
-        const newProduct = response;
-        this.products.next([...this.products.value, newProduct]);
+    return productCreating$.pipe(
+      tap((product: CreateProductRO) => {
+        this.products.next([...this.products.value, product]);
       }),
-      catchError(this.handleError),
     );
   }
 
-  removeProducts$(ids: string[]): Observable<RemoveProductsResponseDto> {
-    const request: RemoveProductsRequestDto = {
+  deleteProduct$(id: string): Observable<ProductModel> {
+    return this.http
+      .delete<ProductModel>(
+        ApiApplication.PRODUCT.CONTROLLER +
+          '/' +
+          ApiApplication.PRODUCT.DELETE.replace(':id', id),
+      )
+      .pipe(
+        tap((response: ProductModel) => {
+          this.products.next(
+            this.products.value.filter((product) => product.id !== response.id),
+          );
+        }),
+      );
+  }
+
+  deleteProducts$(ids: string[]): Observable<string[]> {
+    const request: DeleteProductDtostos = {
       ids,
     };
-    const productRemoving$ = this.http.post<RemoveProductsResponseDto>(
-      this.removeUrl,
+    const productDeleting$ = this.http.post<string[]>(
+      ApiApplication.PRODUCT.CONTROLLER + ApiApplication.PRODUCT.DELETE_MANY,
       request,
     );
 
-    return productRemoving$.pipe(
-      tap((response: RemoveProductsResponseDto) => {
-        const { ids: deletedIds } = response;
+    return productDeleting$.pipe(
+      tap((deletedIds: string[]) => {
         this.products.next(
           this.products.value.filter(
-            (product) => !deletedIds.includes(product.id!),
+            (product) => !deletedIds.includes(product.id),
           ),
         );
       }),
-
-      catchError(this.handleError),
     );
   }
 
   updateProduct$(
-    dto: UpdateProductRequestDto,
-  ): Observable<UpdateProductResponseDto> {
-    const formData = createFormData({
+    id: string,
+    dto: UpdateProductDto,
+  ): Observable<UpdateProductRO> {
+    return this.http.put<UpdateProductRO>(
+      ApiApplication.PRODUCT.CONTROLLER +
+        '/' +
+        ApiApplication.PRODUCT.UPDATE.replace(':id', id),
       dto,
-    });
-    const url = this.updateUrl.replace(':id', dto.id);
-
-    return this.http.put<UpdateProductResponseDto>(url, formData);
+    );
   }
-
-  private handleError(error: HttpErrorResponse) {
-    return throwError(() => new HttpCustomException(error));
-  }
-
-  constructor(private readonly http: HttpClient) {}
 }

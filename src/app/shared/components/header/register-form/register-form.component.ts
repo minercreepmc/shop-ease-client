@@ -1,40 +1,23 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
-import { HttpCustomException } from '@api/http';
-import { UserDomainExceptionCodes } from '@api/http/v1/exceptions/product.domain-exception-code';
-import { ToastCustomService, ToastrCustomModule } from '@shared/services';
-import { AuthService } from '@shared/services/auth.service';
+import { FormsModule } from '@angular/forms';
+import { CreateMemberDto } from '@dto';
+import { ToastrCustomService, UserService } from '@service';
 
 @Component({
   selector: 'app-register-form',
   templateUrl: './register-form.component.html',
   styleUrls: ['./register-form.component.scss'],
   standalone: true,
-  imports: [ReactiveFormsModule, HttpClientModule, ToastrCustomModule],
+  imports: [FormsModule],
 })
 export class RegisterFormComponent {
-  risSuccessful = false;
-  isRegisterFaileded = false;
-  registerForm: FormGroup;
+  createMemberDto = new CreateMemberDto();
 
   constructor(
-    private readonly formBuilder: FormBuilder,
-    private readonly authService: AuthService,
-    private readonly toast: ToastCustomService,
-  ) {
-    this.registerForm = this.formBuilder.group({
-      fullName: [''],
-      username: ['', [Validators.required]],
-      password: ['', [Validators.required]],
-      confirmPassword: ['', [Validators.required]],
-    });
-  }
+    private userService: UserService,
+    private toast: ToastrCustomService,
+  ) {}
 
   onSubmit() {
     const isMatch = this.isPasswordMatch();
@@ -44,35 +27,28 @@ export class RegisterFormComponent {
       return;
     }
 
-    this.register();
+    this.register(this.createMemberDto);
   }
 
   isPasswordMatch() {
     return (
-      this.registerForm.value.password ===
-      this.registerForm.value.confirmPassword
+      this.createMemberDto.password === this.createMemberDto.confirmPassword
     );
   }
 
-  register() {
-    this.authService.register$(this.registerForm.value).subscribe({
-      next: (response) => {
+  register(dto: CreateMemberDto) {
+    this.userService.createMember$(dto).subscribe({
+      next: () => {
         this.toast.success('Register success');
-        this.risSuccessful = true;
-        this.registerForm.reset();
       },
-      error: (err: HttpCustomException) => {
-        err.message.forEach((m) => {
-          if (m.code === UserDomainExceptionCodes.PasswordDoesNotValid) {
+      error: (error: HttpErrorResponse) => {
+        error.error.message.forEach((m: any) => {
+          if (m.property === 'password') {
             this.toast.error('Password not valid');
-          } else if (m.code === UserDomainExceptionCodes.UsernameDoesNotValid) {
+          }
+
+          if (m.property === 'username') {
             this.toast.error('Username not valid');
-          } else if (m.code === UserDomainExceptionCodes.FullNameDoesNotValid) {
-            this.toast.error('Full name not valid');
-          } else if (
-            m.code === UserDomainExceptionCodes.UsernameAlreadyExists
-          ) {
-            this.toast.error('Username already exists');
           }
         });
       },

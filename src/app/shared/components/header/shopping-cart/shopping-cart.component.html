@@ -1,29 +1,29 @@
 <div class="shopping-cart">
-  <div *ngIf="cart">
-    <div class="box" *ngFor="let item of cart?.items">
-      <fa-icon
-        (click)="removeCartItem(item.product_id)"
-        [icon]="faTrash"
-        class="trash"
-      ></fa-icon>
-      <img
-        src="{{ item?.image_url || '/assets/default-image.webp' }}"
-        alt="{{ item?.name }}"
-      />
-      <div class="content">
-        <h3>{{ item?.name }}</h3>
-        <span class="price"
-          >${{ item.price - item.price * (item.discount / 100) }}/_</span
-        >
-        <input
-          class="amount"
-          (change)="onChange(item.product_id, $event)"
-          type="number"
-          value="{{ item?.amount }}"
-        />
-      </div>
-    </div>
-    <div class="total">Total: {{ cart.total_price }}</div>
+  <div>
+    <!-- <div class="box" *ngFor="let item of cart?.items"> -->
+    <!--   <fa-icon -->
+    <!--     (click)="removeCartItem(item.product_id)" -->
+    <!--     [icon]="faTrash" -->
+    <!--     class="trash" -->
+    <!--   ></fa-icon> -->
+    <!--   <img -->
+    <!--     src="{{ item?.image_url || '/assets/default-image.webp' }}" -->
+    <!--     alt="{{ item?.name }}" -->
+    <!--   /> -->
+    <!--   <div class="content"> -->
+    <!--     <h3>{{ item?.name }}</h3> -->
+    <!--     <span class="price" -->
+    <!--       >${{ item.price - item.price * (item.discount / 100) }}/_</span -->
+    <!--     > -->
+    <!--     <input -->
+    <!--       class="amount" -->
+    <!--       (change)="onChange(item.product_id, $event)" -->
+    <!--       type="number" -->
+    <!--       value="{{ item?.amount }}" -->
+    <!--     /> -->
+    <!--   </div> -->
+    <!-- </div> -->
+    <div class="total">Total:</div>
     <button (click)="onCheckOut()" href="#" class="btn">Checkout</button>
   </div>
 </div>
