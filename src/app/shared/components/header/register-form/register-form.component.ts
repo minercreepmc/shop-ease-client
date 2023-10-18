@@ -1,22 +1,26 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
 import { CreateMemberDto } from '@dto';
-import { ToastrCustomService, UserService } from '@service';
+import { AuthService, ToastrCustomService, UserService } from '@service';
+import { handleError } from '@shared/utils';
 
 @Component({
   selector: 'app-register-form',
   templateUrl: './register-form.component.html',
   styleUrls: ['./register-form.component.scss'],
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, RouterModule],
 })
 export class RegisterFormComponent {
   createMemberDto = new CreateMemberDto();
 
   constructor(
     private userService: UserService,
+    private authService: AuthService,
     private toast: ToastrCustomService,
+    private router: Router,
   ) {}
 
   onSubmit() {
@@ -41,17 +45,30 @@ export class RegisterFormComponent {
       next: () => {
         this.toast.success('Register success');
       },
-      error: (error: HttpErrorResponse) => {
-        error.error.message.forEach((m: any) => {
-          if (m.property === 'password') {
-            this.toast.error('Password not valid');
-          }
-
-          if (m.property === 'username') {
-            this.toast.error('Username not valid');
-          }
-        });
+      error: (e: HttpErrorResponse) => {
+        handleError(e, this.toast);
+      },
+      complete: () => {
+        this.logIn();
       },
     });
+  }
+
+  logIn() {
+    this.authService.logIn$(this.createMemberDto).subscribe({
+      next: () => {
+        this.toast.success('Login success');
+      },
+      error: (e: HttpErrorResponse) => {
+        handleError(e, this.toast);
+      },
+      complete: () => {
+        this.redirectToShop();
+      },
+    });
+  }
+
+  redirectToShop() {
+    this.router.navigate(['/shop']);
   }
 }

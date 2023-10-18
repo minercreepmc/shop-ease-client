@@ -1,0 +1,32 @@
+.product-details {
+  display: flex;
+  justify-content: space-between;
+  .content {
+    margin-top: 3rem;
+  }
+  .categories {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+  }
+  .name {
+    font-size: 6rem;
+    font-weight: bold;
+    margin-bottom: 3rem;
+  }
+
+  .price {
+    font-size: 2.25rem;
+    font-weight: bold;
+  }
+
+  .amount {
+    width: 4rem;
+    height: 4rem;
+    border: 1px solid var(--black);
+    margin-right: 1rem;
+  }
+
+  .description {
+    margin-top: 4rem;
+  }
+}

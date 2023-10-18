@@ -1,1 +1,25 @@
-<p>product-details works!</p>
+<section class="product-details">
+  <app-product-gallery [image_urls]="product.image_urls"></app-product-gallery>
+
+  <div class="content">
+    <p class="categories">Laptop | Eletric</p>
+    <h1 class="name">{{ product.name }}</h1>
+    <p class="price">
+      {{ product.price || product.new_price | number: numberFormat }} VND
+    </p>
+
+    <input
+      [(ngModel)]="createCartItemDto.amount"
+      class="amount"
+      type="number"
+      name="amount"
+      min="1"
+    />
+    <app-button (buttonClicked)="upsertToCart()">Add to cart</app-button>
+
+    <p class="description">
+      Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum
+      sint consectetur cupidatat.
+    </p>
+  </div>
+</section>
