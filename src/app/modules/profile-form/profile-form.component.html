@@ -1,0 +1,24 @@
+<app-input
+  [id]="'username'"
+  [label]="'Username'"
+  [placeholder]="'Enter username..'"
+  [value]="'test'"
+  [disabled]="true"
+></app-input>
+
+<app-input
+  [id]="'full-name'"
+  [label]="'Full Name'"
+  [placeholder]="'Enter full name..'"
+  [value]="profile.full_name"
+  (change)="onFullNameChange($event)"
+></app-input>
+
+<app-input
+  [id]="'phone'"
+  [label]="'Phone'"
+  [placeholder]="'Enter phone..'"
+  [value]="profile.phone"
+  (change)="onPhoneChange($event)"
+></app-input>
+<app-button (buttonClicked)="updateProfile()">Update</app-button>

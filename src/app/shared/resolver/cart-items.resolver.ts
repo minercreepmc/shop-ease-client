@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
 import { CartItemRO } from '@ro';
-import { CartItemService } from '@service/cart-item.service';
+import { CartItemService } from '@service';
 import { Observable } from 'rxjs';
 
 @Injectable({

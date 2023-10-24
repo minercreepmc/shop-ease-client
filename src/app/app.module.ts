@@ -14,6 +14,7 @@ import { HttpCustomExceptionHandler } from './core/exception-handlers';
 import { AuthService } from '@shared/services';
 import { httpInterceptorProviders } from './core/interceptors';
 import { ToastrCustomModule } from '@service/toastr';
+import { MatDialogModule } from '@angular/material/dialog';
 
 library.add(faFacebookF, faTwitter, faPhone, faSearch);
 
@@ -34,6 +35,7 @@ const exceptionHandlers: Provider[] = [
     HomeComponent,
     FeaturesComponent,
     ToastrCustomModule,
+    MatDialogModule,
   ],
   providers: [...exceptionHandlers, httpInterceptorProviders, AuthService],
   bootstrap: [AppComponent],

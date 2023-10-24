@@ -1,29 +1,36 @@
 <div class="shopping-cart">
   <div>
-    <!-- <div class="box" *ngFor="let item of cart?.items"> -->
-    <!--   <fa-icon -->
-    <!--     (click)="removeCartItem(item.product_id)" -->
-    <!--     [icon]="faTrash" -->
-    <!--     class="trash" -->
-    <!--   ></fa-icon> -->
-    <!--   <img -->
-    <!--     src="{{ item?.image_url || '/assets/default-image.webp' }}" -->
-    <!--     alt="{{ item?.name }}" -->
-    <!--   /> -->
-    <!--   <div class="content"> -->
-    <!--     <h3>{{ item?.name }}</h3> -->
-    <!--     <span class="price" -->
-    <!--       >${{ item.price - item.price * (item.discount / 100) }}/_</span -->
-    <!--     > -->
-    <!--     <input -->
-    <!--       class="amount" -->
-    <!--       (change)="onChange(item.product_id, $event)" -->
-    <!--       type="number" -->
-    <!--       value="{{ item?.amount }}" -->
-    <!--     /> -->
-    <!--   </div> -->
-    <!-- </div> -->
-    <div class="total">Total:</div>
-    <button (click)="onCheckOut()" href="#" class="btn">Checkout</button>
+    <div class="box" *ngFor="let item of items">
+      <fa-icon
+        (click)="deleteItem(item.id)"
+        [icon]="faTrash"
+        class="trash"
+      ></fa-icon>
+      <img
+        src="{{ item?.image_urls?.[0] || '/assets/default-image.webp' }}"
+        alt="{{ item?.product_name }}"
+      />
+      <div class="content">
+        <h3>{{ item?.product_name }}</h3>
+        <span class="price"
+          >${{
+            item.product_new_price || item.product_price | number: numberFormat
+          }}/_</span
+        >
+        <input
+          (change)="onAmountChange($event, item.id)"
+          class="amount"
+          type="number"
+          value="{{ item.amount }}"
+        />
+      </div>
+    </div>
+    <p *ngIf="detail && detail.shipping_fee">
+      Shipping Fee: {{ detail.shipping_fee | number: numberFormat }}
+    </p>
+    <div class="total">
+      Total: {{ detail?.total_price || 0 | number: numberFormat }} VND
+    </div>
+    <app-button (buttonClicked)="confirmCheckout()">Check out</app-button>
   </div>
 </div>

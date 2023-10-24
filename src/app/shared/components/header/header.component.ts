@@ -60,6 +60,7 @@ export class HeaderComponent implements OnInit {
 
     this.authService.isLoggedIn$().subscribe({
       next: (response) => {
+        console.log(response);
         this.isLoggedIn = response;
       },
     });

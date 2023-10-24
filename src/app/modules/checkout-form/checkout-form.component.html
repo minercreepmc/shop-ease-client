@@ -1,0 +1,27 @@
+<form>
+  <mat-form-field class="form-field">
+    <mat-label>Address</mat-label>
+    <mat-select
+      [value]="cartDetail.address_id"
+      (selectionChange)="onAddressChange($event)"
+    >
+      <mat-option *ngFor="let address of addresses" [value]="address.id">{{
+        address.location
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="form-field">
+    <mat-label>Shipping method</mat-label>
+    <mat-select
+      [value]="cartDetail.shipping_fee_id"
+      (selectionChange)="onShippingFeeChange($event)"
+    >
+      <mat-option *ngFor="let shipping of shippingFees" [value]="shipping.id">{{
+        shipping.name + ": " + shipping.fee
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <p>Total: {{ cartDetail.total_price || 0 | number: numberFormat }} VND</p>
+</form>

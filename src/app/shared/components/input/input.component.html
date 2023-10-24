@@ -1,0 +1,11 @@
+<label for="{{ id }}">{{ label }}</label>
+<div class="input-box" [ngClass]="{ disabled: disabled }">
+  <input
+    [id]="id"
+    [(ngModel)]="value"
+    type="search"
+    [placeholder]="placeholder"
+    [disabled]="disabled"
+    (ngModelChange)="onValueChange($event)"
+  />
+</div>

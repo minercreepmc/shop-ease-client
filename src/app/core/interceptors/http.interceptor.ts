@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 export class HttpRequestInterceptor implements HttpInterceptor {
   intercept(
     req: HttpRequest<any>,
-    next: HttpHandler
+    next: HttpHandler,
   ): Observable<HttpEvent<any>> {
     req = req.clone({
       withCredentials: true,

@@ -1,9 +1,21 @@
-import { AsyncPipe, NgClass, NgFor, NgIf } from '@angular/common';
+import { AsyncPipe, DecimalPipe, NgClass, NgFor, NgIf } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { numberFormat } from '@constant';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { OrderService } from '@shared/services';
+import { CartModel } from '@model';
+import { CheckoutDialogComponent } from '@modules/checkout-dialog/checkout-dialog.component';
+import { CartItemRO, CartRO } from '@ro';
+import { CartItemService } from '@service/cart-item.service';
+import { ButtonComponent } from '@shared/components/button/button.component';
+import {
+  CartService,
+  OrderService,
+  ToastrCustomService,
+} from '@shared/services';
+import { handleError } from '@shared/utils';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -17,65 +29,72 @@ import { OrderService } from '@shared/services';
     AsyncPipe,
     NgClass,
     HttpClientModule,
+    ButtonComponent,
+    DecimalPipe,
   ],
 })
 export class ShoppingCartComponent implements OnInit {
-  faTrash = faTrash;
   constructor(
-    private readonly orderService: OrderService, //private readonly toast: ToastCustomService,
+    private cartItemService: CartItemService,
+    private cartService: CartService,
+    private dialog: MatDialog,
+    private orderService: OrderService,
+    private toast: ToastrCustomService,
   ) {}
+  faTrash = faTrash;
+  numberFormat = numberFormat;
+  items: CartItemRO[] = [];
+  detail: CartRO;
+
   ngOnInit(): void {
-    console.log('oke');
+    this.cartItemService.items$.subscribe({
+      next: (items) => {
+        this.items = items;
+      },
+    });
+    this.cartService.detail$.subscribe({
+      next: (detail) => {
+        this.detail = detail;
+      },
+    });
   }
 
-  onChange(productId: string, $event: any) {
-    // this.cartService.getCart$().subscribe({
-    //   next: (cart) => {
-    //     this.cartService
-    //       .replaceAmount$(
-    //         cart,
-    //         productId,
-    //         Number(($event.target as HTMLInputElement)?.value),
-    //       )
-    //       .subscribe({
-    //         next: (response) => {
-    //           console.log(response);
-    //         },
-    //       });
-    //   },
-    //   error: (error) => {
-    //     this.toast.error('Something went wrong, try again later');
-    //     throw error;
-    //   },
-    // });
+  onAmountChange(event: any, itemId: string) {
+    console.log(event.target.value);
+    this.cartItemService
+      .updateCartItem$(itemId, {
+        amount: event.target.value,
+      })
+      .subscribe();
   }
 
-  removeCartItem(productId: string) {
-    // this.cartService.getCart$().subscribe({
-    //   next: (cart) => {
-    //     this.cartService.removeFromCart$(cart, productId).subscribe();
-    //   },
-    //   error: (error) => {
-    //     this.toast.error('Something went wrong, try again later');
-    //     throw error;
-    //   },
-    // });
+  deleteItem(id: string) {
+    this.cartItemService.deleteCartItem$(id).subscribe();
   }
 
-  onCheckOut() {
-    // const dto: CreateOrderHttpRequest = {
-    //   cartId: this.cart.id,
-    //   address: 'Just testing',
-    //   totalPrice: this.cart.total_price,
-    //   productIds: this.cart.items.map((item) => item.product_id),
-    // };
-    // this.orderService.checkOut$(dto).subscribe({
-    //   next: (response) => {
-    //     this.toast.success('Order placed successfully');
-    //   },
-    //   complete: () => {
-    //     window.location.reload();
-    //   },
-    // });
+  confirmCheckout() {
+    this.dialog
+      .open(CheckoutDialogComponent)
+      .afterClosed()
+      .subscribe({
+        next: (result) => {
+          if (result) {
+            this.createOrder();
+          }
+        },
+      });
+  }
+  createOrder() {
+    this.orderService.createOrder$().subscribe({
+      next: () => {
+        this.toast.success('Create order success');
+      },
+      error: (e) => {
+        handleError(e, this.toast);
+      },
+      complete: () => {
+        window.location.reload();
+      },
+    });
   }
 }

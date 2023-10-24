@@ -1,8 +1,12 @@
 import { NgFor } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { CreateCartItemDto } from '@dto';
 import { ProductCardComponent } from '@modules/product-card/product-card.component';
 import { ProductRO } from '@ro';
+import { ToastrCustomService } from '@service';
+import { CartItemService } from '@service/cart-item.service';
+import { handleError } from '@shared/utils';
 
 @Component({
   selector: 'app-shop-products',
@@ -11,15 +15,26 @@ import { ProductRO } from '@ro';
   standalone: true,
   imports: [ProductCardComponent, NgFor, RouterLink],
 })
-export class ShopProductsComponent implements OnInit {
-  breakpoint: number;
+export class ShopProductsComponent {
+  constructor(
+    private cartItemService: CartItemService,
+    private toast: ToastrCustomService,
+  ) {}
   @Input() products: ProductRO[] = [];
-  ngOnInit() {
-    this.breakpoint = window.innerWidth <= 400 ? 1 : 6;
-    console.log(this.products);
-  }
 
-  onResize(event: any) {
-    this.breakpoint = event.target.innerWidth <= 400 ? 1 : 6;
+  upsertToCart(productId: string) {
+    this.cartItemService
+      .upsertCartItem$({
+        productId,
+        amount: 1,
+      })
+      .subscribe({
+        next: () => {
+          this.toast.success('Added to cart');
+        },
+        error: (e) => {
+          handleError(e, this.toast);
+        },
+      });
   }
 }

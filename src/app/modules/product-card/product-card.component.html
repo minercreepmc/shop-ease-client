@@ -19,5 +19,7 @@
     <fa-icon [icon]="faStarHalfAlt"></fa-icon>
   </div>
 
-  <button class="btn" (click)="onAddToCart(product.id)">Add To Cart</button>
+  <button class="btn" (click)="onAddToCart($event, product.id)">
+    Add To Cart
+  </button>
 </div>

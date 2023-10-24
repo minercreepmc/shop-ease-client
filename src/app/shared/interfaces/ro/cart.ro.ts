@@ -1,8 +1,10 @@
-import { CartItemRO } from '@ro';
+import type { AddressModel } from '@model';
+import type { CartItemRO } from '@ro';
 
 export class CartRO {
   id: string;
-  shippingFee?: number;
+  shipping_fee?: number;
+  address: AddressModel;
   total_price: number;
   items: CartItemRO[];
 }

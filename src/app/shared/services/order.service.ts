@@ -29,10 +29,11 @@ export class OrderService {
   }
 
   getByMember$(): Observable<OrderRO[]> {
-    return this.http.get<OrderRO[]>(
+    return this.http.post<OrderRO[]>(
       ApiApplication.ORDER.CONTROLLER +
         '/' +
         ApiApplication.ORDER.GET_BY_MEMBER,
+      {},
     );
   }
 
@@ -48,6 +49,13 @@ export class OrderService {
   getOrders$(): Observable<OrderRO[]> {
     return this.http.get<OrderRO[]>(
       ApiApplication.ORDER.CONTROLLER + '/' + ApiApplication.ORDER.GET_ALL,
+    );
+  }
+
+  createOrder$(): Observable<OrderModel> {
+    return this.http.post<OrderModel>(
+      ApiApplication.ORDER.CONTROLLER + '/' + ApiApplication.ORDER.CREATE,
+      {},
     );
   }
 }

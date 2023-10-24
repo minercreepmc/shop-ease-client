@@ -20,6 +20,7 @@ export const ApiApplication = {
     GET_ALL_STAFF: 'get-all-staff',
     GET_ONE: ':id',
     UPDATE: ':id',
+    UPDATE_PROFILE: 'update-profile',
   },
   ADDRESS: {
     CONTROLLER: ApiBaseUrl + '/address',
@@ -79,7 +80,7 @@ export const ApiApplication = {
   CART: {
     CONTROLLER: ApiBaseUrl + '/cart',
     CREATE: '',
-    UPDATE: ':id',
+    UPDATE: '',
     GET: '',
     GET_ITEMS: 'items',
     GET_TOTAL_PRICE: 'total-price',
@@ -112,12 +113,17 @@ export const ApiApplication = {
     UPDATE: ':id',
     GET_ONE: ':orderId',
   },
+  ORDER_ITEM: {
+    CONTROLLER: ApiBaseUrl + '/order-item',
+    GET_BY_ORDER_ID: 'get-by-order-id',
+  },
   SHIPPING_STATUS: {
     CONTROLLER: ApiBaseUrl + '/shipping-status',
     CREATE: '',
     UPDATE: ':id',
     DELETE: ':id',
     GET_BY_SHIPPING_ID: 'get-by-shipping-id',
+    GET_BY_ORDER_ID: 'get-by-order-id',
     GET_ONE: ':id',
   },
 };

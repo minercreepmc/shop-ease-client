@@ -57,6 +57,13 @@ export class UserService {
     );
   }
 
+  updateProfile$(dto: UpdateUserDto): Observable<UserModel> {
+    return this.http.post<UserModel>(
+      ApiApplication.USER.CONTROLLER + '/' + ApiApplication.USER.UPDATE_PROFILE,
+      dto,
+    );
+  }
+
   updateUser$(id: string, dto: UpdateUserDto): Observable<UserModel> {
     return this.http.put<UserModel>(
       ApiApplication.USER.CONTROLLER +

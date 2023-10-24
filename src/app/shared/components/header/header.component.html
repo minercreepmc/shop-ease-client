@@ -27,7 +27,7 @@
     <span *ngIf="!isLoggedIn">
       <fa-icon [icon]="faUser" id="login-btn" (click)="toggleLogin()"></fa-icon>
     </span>
-    <span *ngIf="isLoggedIn" role="button" routerLink="/">
+    <span *ngIf="isLoggedIn" role="button" routerLink="/profile">
       <fa-icon [icon]="faUserCircle" id="profile-btn"></fa-icon>
     </span>
   </div>

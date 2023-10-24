@@ -1,4 +1,5 @@
 import { OrderModel } from '@model';
+import { OrderItemRO } from './order-item.ro';
 
 export class OrderRO {
   id: string;
@@ -11,18 +12,6 @@ export class OrderRO {
   member_phone: string;
   updated_at: Date;
   items?: OrderItemRO[];
-}
-
-export class OrderItemRO {
-  id: string;
-  price: number;
-  order_id: string;
-  product_id: string;
-  amount: number;
-  name: string;
-  image_urls: string[];
-  description: string;
-  category_name: string;
 }
 
 export class CreateOrderRO extends OrderModel {

@@ -84,4 +84,13 @@ export class ShippingStatusService {
       { shippingId },
     );
   }
+
+  getByOrder$(orderId: string): Observable<ShippingStatusModel[]> {
+    return this.http.post<ShippingStatusModel[]>(
+      ApiApplication.SHIPPING_STATUS.CONTROLLER +
+        '/' +
+        ApiApplication.SHIPPING_STATUS.GET_BY_ORDER_ID,
+      { orderId },
+    );
+  }
 }

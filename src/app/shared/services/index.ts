@@ -10,4 +10,7 @@ export * from './cache.service';
 export * from './shipping-fee.service';
 export * from './shipping.service';
 export * from './shipping-status.service';
+export * from './cart.service';
+export * from './cart-item.service';
 export * from './toastr/toastr.service';
+export * from './order-item.service';
