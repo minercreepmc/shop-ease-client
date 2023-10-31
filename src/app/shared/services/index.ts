@@ -14,3 +14,4 @@ export * from './cart.service';
 export * from './cart-item.service';
 export * from './toastr/toastr.service';
 export * from './order-item.service';
+export * from './product-category.service';

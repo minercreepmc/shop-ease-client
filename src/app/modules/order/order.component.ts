@@ -100,7 +100,7 @@ export class OrderComponent implements OnInit {
     return this.order.status !== OrderStatus.COMPLETED;
   }
 
-  confirmOrderClick() {
+  confirmClick() {
     this.dialog
       .open(ConfirmDialogComponent)
       .afterClosed()
@@ -110,6 +110,27 @@ export class OrderComponent implements OnInit {
             this.orderService
               .updateOrder$(this.order.id, {
                 status: OrderStatus.COMPLETED,
+              })
+              .subscribe({
+                next: () => {
+                  window.location.reload();
+                },
+              });
+          }
+        },
+      });
+  }
+
+  cancelClick() {
+    this.dialog
+      .open(ConfirmDialogComponent)
+      .afterClosed()
+      .subscribe({
+        next: (result) => {
+          if (result) {
+            this.orderService
+              .updateOrder$(this.order.id, {
+                status: OrderStatus.CANCELED,
               })
               .subscribe({
                 next: () => {

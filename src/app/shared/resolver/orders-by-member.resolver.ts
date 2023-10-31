@@ -10,9 +10,8 @@ import { Observable } from 'rxjs';
 export class OrdersByMemberResolver implements Resolve<OrderRO[]> {
   constructor(private orderService: OrderService) {}
   resolve(): Observable<OrderRO[]> {
-    this.orderService.getByMember$().subscribe({
+    this.orderService.getByMemberAndStatus$().subscribe({
       next: (orders) => {
-        console.log(orders);
         this.orderService.setOrders$(orders);
       },
     });

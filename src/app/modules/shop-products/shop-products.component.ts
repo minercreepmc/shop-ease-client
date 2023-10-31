@@ -1,7 +1,8 @@
 import { NgFor } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 import { RouterLink } from '@angular/router';
-import { CreateCartItemDto } from '@dto';
 import { ProductCardComponent } from '@modules/product-card/product-card.component';
 import { ProductRO } from '@ro';
 import { ToastrCustomService } from '@service';
@@ -13,7 +14,13 @@ import { handleError } from '@shared/utils';
   templateUrl: './shop-products.component.html',
   styleUrls: ['./shop-products.component.scss'],
   standalone: true,
-  imports: [ProductCardComponent, NgFor, RouterLink],
+  imports: [
+    ProductCardComponent,
+    NgFor,
+    RouterLink,
+    MatFormFieldModule,
+    MatSelectModule,
+  ],
 })
 export class ShopProductsComponent {
   constructor(

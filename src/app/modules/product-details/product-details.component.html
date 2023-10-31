@@ -2,7 +2,7 @@
   <app-product-gallery [image_urls]="product.image_urls"></app-product-gallery>
 
   <div class="content">
-    <p class="categories">Laptop | Eletric</p>
+    <p class="categories">{{ printCategoryNames() }}</p>
     <h1 class="name">{{ product.name }}</h1>
     <p class="price">
       {{ product.price || product.new_price | number: numberFormat }} VND

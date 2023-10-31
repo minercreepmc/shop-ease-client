@@ -17,8 +17,10 @@
     <app-order-item *ngFor="let item of items" [item]="item"></app-order-item>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button *ngIf="cancelShow()">CANCEL</button>
-    <button mat-button *ngIf="confirmShow()" (click)="confirmOrderClick()">
+    <button mat-button *ngIf="cancelShow()" (click)="cancelClick()">
+      CANCEL
+    </button>
+    <button mat-button *ngIf="confirmShow()" (click)="confirmClick()">
       CONFIRM
     </button>
   </mat-card-actions>

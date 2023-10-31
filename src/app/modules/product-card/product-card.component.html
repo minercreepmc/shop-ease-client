@@ -6,11 +6,13 @@
   <h3>{{ product.name }}</h3>
   <div *ngIf="product.discount">
     <div class="old-price">
-      <a> ${{ product.price }} </a>
+      <a> ${{ product.price | number: numberFormat }} </a>
     </div>
-    <div class="price">${{ product.new_price }}</div>
+    <div class="price">{{ product.new_price | number: numberFormat }} VND</div>
   </div>
-  <div *ngIf="!product.discount" class="price">${{ product.price }}</div>
+  <div *ngIf="!product.discount" class="price">
+    {{ product.price | number: numberFormat }} VND
+  </div>
   <div class="stars">
     <fa-icon [icon]="faStar"></fa-icon>
     <fa-icon [icon]="faStar"></fa-icon>

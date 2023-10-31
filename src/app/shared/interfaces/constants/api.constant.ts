@@ -67,6 +67,10 @@ export const ApiApplication = {
     GET_ALL_WITH_PRODUCT_COUNT: 'get-all-with-product-count',
     GET_ONE: ':id',
   },
+  PRODUCT_CATEGORY: {
+    CONTROLLER: ApiBaseUrl + '/product-category',
+    GET_PRODUCTS_BY_CATEGORY: 'get-products-by-category',
+  },
   DISCOUNT: {
     CONTROLLER: ApiBaseUrl + '/discount',
     CREATE: '',

@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ApiApplication } from '@constant';
+import { ApiApplication, OrderStatus } from '@constant';
 import { OrderRO } from '@ro';
 import { UpdateOrderDto } from '@dto';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -28,12 +28,23 @@ export class OrderService {
     );
   }
 
-  getByMember$(): Observable<OrderRO[]> {
+  getByMemberAndStatus$(status?: OrderStatus): Observable<OrderRO[]> {
+    let params: HttpParams | undefined = undefined;
+
+    if (status) {
+      params = new HttpParams({
+        fromObject: { status: status as string },
+      });
+    }
+
     return this.http.post<OrderRO[]>(
       ApiApplication.ORDER.CONTROLLER +
         '/' +
         ApiApplication.ORDER.GET_BY_MEMBER,
       {},
+      {
+        params,
+      },
     );
   }
 

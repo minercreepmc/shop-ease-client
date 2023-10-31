@@ -33,6 +33,11 @@ export class ProductDetailsComponent implements OnInit {
     this.createCartItemDto.productId = this.product.id;
   }
 
+  printCategoryNames() {
+    console.log(this.product);
+    return this.product.categories.map((c) => c.name).join('| ');
+  }
+
   upsertToCart() {
     this.cartItemService.upsertCartItem$(this.createCartItemDto).subscribe({
       next: () => {

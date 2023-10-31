@@ -1,4 +1,14 @@
 <section class="shop">
-  <p>filter bar</p>
+  <mat-form-field>
+    <mat-label>Select category</mat-label>
+    <mat-select disableRipple>
+      <mat-option
+        *ngFor="let category of categories"
+        [value]="category.id"
+        (click)="getProductsByCategory(category.id)"
+        >{{ category.name }}</mat-option
+      >
+    </mat-select>
+  </mat-form-field>
   <app-shop-products [products]="products"></app-shop-products>
 </section>
