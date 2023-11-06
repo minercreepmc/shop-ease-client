@@ -40,11 +40,10 @@ export class CartItemService {
       )
       .pipe(
         tap((item) => {
-          this.items.next(
-            this.items.value.map((i) =>
-              i.productId === item.product_id ? item : i,
-            ),
-          );
+          if (this.items.value.some((i) => i.productId === item.product_id)) {
+            return;
+          }
+          this.items.next([...this.items.value, item]);
         }),
       );
   }

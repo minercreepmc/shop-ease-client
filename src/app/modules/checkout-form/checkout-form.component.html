@@ -1,6 +1,6 @@
 <form>
   <mat-form-field class="form-field">
-    <mat-label>Address</mat-label>
+    <mat-label>Địa chỉ</mat-label>
     <mat-select
       [value]="cartDetail.address_id"
       (selectionChange)="onAddressChange($event)"
@@ -12,7 +12,7 @@
   </mat-form-field>
 
   <mat-form-field class="form-field">
-    <mat-label>Shipping method</mat-label>
+    <mat-label>Phước thức giao hàng</mat-label>
     <mat-select
       [value]="cartDetail.shipping_fee_id"
       (selectionChange)="onShippingFeeChange($event)"

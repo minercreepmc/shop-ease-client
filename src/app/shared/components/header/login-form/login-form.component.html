@@ -1,20 +1,20 @@
 <form class="login-form" (submit)="onSubmit()">
-  <h3>Login Now</h3>
+  <h3>Đăng nhập ngay!</h3>
   <input
     [(ngModel)]="logInDto.username"
     name="username"
     type="text"
-    placeholder="Your username"
+    placeholder="Tên đăng nhập"
     class="box"
   />
   <input
     [(ngModel)]="logInDto.password"
     name="password"
     type="password"
-    placeholder="Your password"
+    placeholder="Mật khẩu"
     class="box"
   />
-  <p>Forget your password <a href="#">Click here</a></p>
-  <p>Don't have an account <a (click)="registerClick()">Create now</a></p>
-  <button type="submit" class="btn">Submit</button>
+  <p>Quên mât khẩu?</p>
+  <p>Không có tài khoản? <a (click)="registerClick()">Tạo ngay</a></p>
+  <button type="submit" class="btn">Đăng nhập</button>
 </form>

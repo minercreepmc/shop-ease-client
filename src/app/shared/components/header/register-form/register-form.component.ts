@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { CreateMemberDto } from '@dto';
@@ -43,7 +43,7 @@ export class RegisterFormComponent {
   register(dto: CreateMemberDto) {
     this.userService.createMember$(dto).subscribe({
       next: () => {
-        this.toast.success('Register success');
+        this.toast.success('Đăng ký thành công');
       },
       error: (e: HttpErrorResponse) => {
         handleError(e, this.toast);
@@ -57,7 +57,7 @@ export class RegisterFormComponent {
   logIn() {
     this.authService.logIn$(this.createMemberDto).subscribe({
       next: () => {
-        this.toast.success('Login success');
+        this.toast.success('Đăng nhập thành công');
       },
       error: (e: HttpErrorResponse) => {
         handleError(e, this.toast);

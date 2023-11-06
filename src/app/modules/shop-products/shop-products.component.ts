@@ -5,7 +5,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { RouterLink } from '@angular/router';
 import { ProductCardComponent } from '@modules/product-card/product-card.component';
 import { ProductRO } from '@ro';
-import { ToastrCustomService } from '@service';
+import { CartService, ToastrCustomService } from '@service';
 import { CartItemService } from '@service/cart-item.service';
 import { handleError } from '@shared/utils';
 
@@ -25,6 +25,7 @@ import { handleError } from '@shared/utils';
 export class ShopProductsComponent {
   constructor(
     private cartItemService: CartItemService,
+    private cartService: CartService,
     private toast: ToastrCustomService,
   ) {}
   @Input() products: ProductRO[] = [];
@@ -37,11 +38,22 @@ export class ShopProductsComponent {
       })
       .subscribe({
         next: () => {
-          this.toast.success('Added to cart');
+          this.toast.success('Đã thêm vào giỏ');
         },
         error: (e) => {
           handleError(e, this.toast);
         },
+        complete: () => {
+          this.getTotalPrice();
+        },
       });
+  }
+
+  getTotalPrice() {
+    this.cartService.getDetail$().subscribe({
+      next: (detail) => {
+        this.cartService.setDetail$(detail);
+      },
+    });
   }
 }

@@ -26,18 +26,18 @@ export class ProfileComponent {
   constructor(
     private authService: AuthService,
     private toast: ToastrCustomService,
-    private route: Router,
+    private router: Router,
   ) {}
   logOut() {
     this.authService.logOut$().subscribe({
       next: () => {
-        this.toast.success('Log out success');
+        this.toast.success('Đăng xuất thành công');
       },
       error: (e) => {
         handleError(e, this.toast);
       },
       complete: () => {
-        window.location.reload();
+        this.router.navigate(['/home']);
       },
     });
   }

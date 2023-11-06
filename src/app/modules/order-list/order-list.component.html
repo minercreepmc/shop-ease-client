@@ -1,10 +1,10 @@
 <div class="order-list">
   <mat-form-field>
-    <mat-label>Select an option</mat-label>
+    <mat-label>Chọn loại hóa đơn</mat-label>
     <mat-select disableRipple>
-      <mat-option value="1" (click)="getOrders$()">All</mat-option>
+      <mat-option value="1" (click)="getOrders$()">Tất cả</mat-option>
       <mat-option value="2" (click)="getCancelledOrders$()"
-        >Cancelled Order</mat-option
+        >Hóa đơn đã bị hủy</mat-option
       >
     </mat-select>
   </mat-form-field>

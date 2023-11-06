@@ -2,7 +2,8 @@ export class CreateMemberDto {
   username: string;
   password: string;
   confirmPassword?: string;
-  fullName? = 'Default User';
+  fullName: string;
+  phone: string;
 }
 
 export class CreateStaffDto {

@@ -3,9 +3,9 @@
     <mat-card-title-group>
       <mat-card-title>{{ item.name }}</mat-card-title>
       <mat-card-subtitle
-        >Price: {{ item.price | number: numberFormat }} VND</mat-card-subtitle
+        >Giá: {{ item.price | number: numberFormat }} VND</mat-card-subtitle
       >
-      <mat-card-subtitle>Amount: {{ item.amount }} </mat-card-subtitle>
+      <mat-card-subtitle>Số lượng: {{ item.amount }} </mat-card-subtitle>
       <img
         mat-card-sm-image
         [src]="item.image_urls[0] || '/assets/default-image.webp'"

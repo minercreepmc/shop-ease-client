@@ -21,16 +21,17 @@
           (change)="onAmountChange($event, item.id)"
           class="amount"
           type="number"
+          min="1"
           value="{{ item.amount }}"
         />
       </div>
     </div>
     <p *ngIf="detail && detail.shipping_fee">
-      Shipping Fee: {{ detail.shipping_fee | number: numberFormat }}
+      Phí ship: {{ detail.shipping_fee | number: numberFormat }}
     </p>
     <div class="total">
-      Total: {{ detail?.total_price || 0 | number: numberFormat }} VND
+      Tổng cộng: {{ detail?.total_price || 0 | number: numberFormat }} VND
     </div>
-    <app-button (buttonClicked)="confirmCheckout()">Check out</app-button>
+    <app-button (buttonClicked)="confirmCheckout()">Thanh toán</app-button>
   </div>
 </div>

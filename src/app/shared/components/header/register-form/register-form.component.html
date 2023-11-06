@@ -1,32 +1,40 @@
 <form class="register-form" (submit)="onSubmit()">
-  <h3>Create an Account</h3>
+  <h3>Tạo một tài khoản</h3>
   <input
     [(ngModel)]="createMemberDto.fullName"
     name="full-name"
     type="text"
-    placeholder="Your full name"
+    placeholder="Tên đầy đủ của bạn"
+    class="box"
+  />
+
+  <input
+    [(ngModel)]="createMemberDto.phone"
+    name="phone"
+    type="text"
+    placeholder="Số điện thoại"
     class="box"
   />
   <input
     [(ngModel)]="createMemberDto.username"
     name="username"
     type="username"
-    placeholder="Your username"
+    placeholder="Tên đăng nhập"
     class="box"
   />
   <input
     [(ngModel)]="createMemberDto.password"
     name="password"
     type="password"
-    placeholder="Choose a password"
+    placeholder="Mật khẩu"
     class="box"
   />
   <input
     [(ngModel)]="createMemberDto.confirmPassword"
     name="confirm-password"
     type="password"
-    placeholder="Confirm password"
+    placeholder="Xác nhận mật khẩu"
     class="box"
   />
-  <button type="submit" class="btn">Register</button>
+  <button type="submit" class="btn">Đăng ký</button>
 </form>

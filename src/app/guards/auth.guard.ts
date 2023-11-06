@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@shared/services';
-import {  map, catchError, of } from 'rxjs';
+import { map, catchError, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard  {
+export class AuthGuard {
   constructor(
     private readonly authService: AuthService,
-    private router: Router
+    private router: Router,
   ) {}
   canActivate() {
-    return this.authService.isLoggedIn$().pipe(
+    return this.authService.checkLoggedIn$().pipe(
       map((isLoggedIn) => {
         if (isLoggedIn) {
           return true;
@@ -22,7 +22,7 @@ export class AuthGuard  {
       catchError((err) => {
         this.router.navigate(['/home']);
         return of(false);
-      })
+      }),
     );
   }
 }

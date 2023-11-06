@@ -58,11 +58,18 @@ export class HeaderComponent implements OnInit {
     this.isLoginActive = false;
     this.isRegisterActive = false;
 
-    this.authService.isLoggedIn$().subscribe({
+    this.authService.checkLoggedIn$().subscribe({
       next: (response) => {
-        console.log(response);
-        this.isLoggedIn = response;
+        this.authService.setIsLoggedIn$(response);
       },
+    });
+    this.authService.isLoggedIn$.subscribe({
+      next: (response) => {
+        this.isLoggedIn = response;
+        if (response)  {
+          this.isLoginActive = false;
+          this.isRegisterActive = false;
+        }      },
     });
   }
 

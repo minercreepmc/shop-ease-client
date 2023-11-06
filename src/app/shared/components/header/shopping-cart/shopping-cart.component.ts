@@ -60,12 +60,15 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   onAmountChange(event: any, itemId: string) {
-    console.log(event.target.value);
     this.cartItemService
       .updateCartItem$(itemId, {
         amount: event.target.value,
       })
-      .subscribe();
+      .subscribe({
+        complete: () => {
+          this.getTotalPrice();
+        },
+      });
   }
 
   deleteItem(id: string) {
@@ -94,6 +97,14 @@ export class ShoppingCartComponent implements OnInit {
       },
       complete: () => {
         window.location.reload();
+      },
+    });
+  }
+
+  getTotalPrice() {
+    this.cartService.getDetail$().subscribe({
+      next: (detail) => {
+        this.cartService.setDetail$(detail);
       },
     });
   }
