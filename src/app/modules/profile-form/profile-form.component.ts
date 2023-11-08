@@ -39,7 +39,7 @@ export class ProfileFormComponent implements OnInit {
     console.log(this.updateProfileDto);
     this.userService.updateProfile$(this.updateProfileDto).subscribe({
       next: () => {
-        this.toast.success('Update successful');
+        this.toast.success('Cập nhật thành công');
       },
       error: (e) => {
         handleError(e, this.toast);

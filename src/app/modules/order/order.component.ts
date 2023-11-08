@@ -40,7 +40,7 @@ export class OrderComponent implements OnInit {
   items: OrderItemRO[] = [];
 
   numberFormat = numberFormat;
-  private statusMessageSubject = new BehaviorSubject<string>(''); // Initialize with an empty string
+  private statusMessageSubject = new BehaviorSubject<string>('');
 
   statusMessage$ = this.statusMessageSubject.asObservable();
 
@@ -61,22 +61,23 @@ export class OrderComponent implements OnInit {
   getOrderStatusMessage() {
     switch (this.order.status) {
       case OrderStatus.PROCESSING:
-        this.statusMessageSubject.next('Your order is processing.');
+        this.statusMessageSubject.next('Đơn hàng của bạn đang được xử lý.');
         break;
       case OrderStatus.ASSIGNED:
-        this.statusMessageSubject.next('Your order is assigned to a shipper');
+        this.statusMessageSubject.next('Đơn hàng của bạn đã giao cho shipper.');
         break;
       case OrderStatus.ACCEPTED:
-        this.statusMessageSubject.next('Your order is received by a shipper.');
+        this.statusMessageSubject.next(
+          'Đơn hàng của bạn đã được shipper nhận.',
+        );
         break;
       case OrderStatus.DELIVERING:
         this.getShippingStatusMessage().subscribe((data) => {
-          console.log(data);
           this.statusMessageSubject.next(data[0].status);
         });
         break;
       case OrderStatus.DELIVERED:
-        this.statusMessageSubject.next('Your order is delivered.');
+        this.statusMessageSubject.next('Đơn hàng đã được giao');
         break;
       default:
         this.statusMessageSubject.next('');

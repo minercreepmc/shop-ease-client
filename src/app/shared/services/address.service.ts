@@ -43,7 +43,9 @@ export class AddressService {
   deleteAddress(id: string) {
     return this.http
       .delete<AddressModel>(
-        ApiApplication.ADDRESS.CONTROLLER + '/' + ApiApplication.ADDRESS.DELETE,
+        ApiApplication.ADDRESS.CONTROLLER +
+          '/' +
+          ApiApplication.ADDRESS.DELETE.replace(':id', id),
       )
       .pipe(
         tap(() => {

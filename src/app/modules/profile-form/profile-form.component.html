@@ -1,6 +1,6 @@
 <app-input
   [id]="'username'"
-  [label]="'Username'"
+  [label]="'Tên đăng nhập'"
   [placeholder]="'Thêm tên đăng nhập..'"
   [value]="'test'"
   [disabled]="true"
@@ -8,7 +8,7 @@
 
 <app-input
   [id]="'full-name'"
-  [label]="'Full Name'"
+  [label]="'Tên đầy đủ'"
   [placeholder]="'Thêm tên đầy đủ..'"
   [value]="profile.full_name"
   (change)="onFullNameChange($event)"
@@ -16,9 +16,9 @@
 
 <app-input
   [id]="'phone'"
-  [label]="'Phone'"
+  [label]="'Số điện thoại'"
   [placeholder]="'Thêm số điện thoại..'"
   [value]="profile.phone"
   (change)="onPhoneChange($event)"
 ></app-input>
-<app-button (buttonClicked)="updateProfile()">Update</app-button>
+<app-button (buttonClicked)="updateProfile()">Cập nhật</app-button>

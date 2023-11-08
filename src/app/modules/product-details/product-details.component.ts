@@ -41,7 +41,7 @@ export class ProductDetailsComponent implements OnInit {
   upsertToCart() {
     this.cartItemService.upsertCartItem$(this.createCartItemDto).subscribe({
       next: () => {
-        this.toast.success('Added to cart');
+        this.toast.success('Đã thêm vào giỏ');
       },
       error: (e) => {
         handleError(e, this.toast);

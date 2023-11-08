@@ -90,7 +90,7 @@ export class ShoppingCartComponent implements OnInit {
   createOrder() {
     this.orderService.createOrder$().subscribe({
       next: () => {
-        this.toast.success('Create order success');
+        this.toast.success('Đặt hàng thành công');
       },
       error: (e) => {
         handleError(e, this.toast);

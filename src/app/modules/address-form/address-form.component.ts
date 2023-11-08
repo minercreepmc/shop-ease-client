@@ -42,7 +42,7 @@ export class AddressFormComponent implements OnInit {
   createAddress() {
     this.addressService.createAddress(this.createAddressDto).subscribe({
       next: () => {
-        this.toast.success('Create address successful');
+        this.toast.success('Thêm địa chỉ thành công');
       },
       error: (e) => {
         handleError(e, this.toast);
@@ -56,7 +56,7 @@ export class AddressFormComponent implements OnInit {
   deleteAddress(id: string) {
     this.addressService.deleteAddress(id).subscribe({
       next: () => {
-        this.toast.success('Delete address successful');
+        this.toast.success('Xóa địa chỉ thành công');
       },
       error: (e) => {
         handleError(e, this.toast);
