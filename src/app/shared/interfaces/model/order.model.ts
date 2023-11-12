@@ -5,6 +5,8 @@ export class OrderModel {
   fee_id: string;
   member_id: string;
   address_id: string;
+  created_at: Date;
+  updated_at: Date;
 
   constructor(dto: OrderModel) {
     this.id = dto.id;
@@ -13,6 +15,8 @@ export class OrderModel {
     this.fee_id = dto.fee_id;
     this.member_id = dto.member_id;
     this.address_id = dto.address_id;
+    this.created_at = dto.created_at;
+    this.updated_at = dto.updated_at;
   }
 }
 

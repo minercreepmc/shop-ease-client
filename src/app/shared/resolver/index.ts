@@ -20,4 +20,3 @@ export * from './shipping-status-list.resolver';
 export * from './cart-items.resolver';
 export * from './cart-detail.resolver';
 export * from './addresses.resolver';
-export * from './orders-by-member.resolver';

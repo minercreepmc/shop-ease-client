@@ -5,7 +5,7 @@ export * from './cart.ro';
 export * from './category.ro';
 export * from './discount.ro';
 export * from './order.ro';
-export * from './order-item.ro';
 export * from './product.ro';
 export * from './shipping.ro';
 export * from './user.ro';
+export * from './order-item.ro';

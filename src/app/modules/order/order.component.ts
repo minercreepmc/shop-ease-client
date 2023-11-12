@@ -5,7 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialog } from '@angular/material/dialog';
 import { OrderStatus, numberFormat } from '@constant';
 import { OrderItemComponent } from '@modules/order-item/order-item.component';
-import { OrderItemRO, OrderRO } from '@ro';
+import { OrderGetAllDataRO, OrderItemRO } from '@ro';
 import {
   OrderItemService,
   OrderService,
@@ -36,7 +36,7 @@ export class OrderComponent implements OnInit {
     private dialog: MatDialog,
     private orderService: OrderService,
   ) {}
-  @Input() order = new OrderRO();
+  @Input() order = new OrderGetAllDataRO();
   items: OrderItemRO[] = [];
 
   numberFormat = numberFormat;

@@ -9,7 +9,6 @@ import {
   ProductsResolver,
   ProfileResolver,
   ShippingFeesResolver,
-  OrdersByMemberResolver,
 } from '@shared/resolver';
 import { CartItemsResolver } from '@shared/resolver/cart-items.resolver';
 import { AuthGuard } from './guards/auth.guard';
@@ -60,7 +59,6 @@ const routes: Routes = [
       items: CartItemsResolver,
       detail: CartDetailResolver,
       shippingFees: ShippingFeesResolver,
-      orders: OrdersByMemberResolver,
     },
     canActivate: [AuthGuard],
     loadComponent: () =>

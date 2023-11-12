@@ -1,12 +1,26 @@
 <div class="order-list">
   <mat-form-field>
-    <mat-label>Chọn loại hóa đơn</mat-label>
-    <mat-select disableRipple>
-      <mat-option value="1" (click)="getOrders$()">Tất cả</mat-option>
-      <mat-option value="2" (click)="getCancelledOrders$()"
-        >Hóa đơn đã bị hủy</mat-option
-      >
+    <mat-label>Tình trạng</mat-label>
+    <mat-select
+      required
+      [(value)]="currentStatus"
+      (selectionChange)="onSelectionStatusChange($event)"
+    >
+      <mat-option [value]="''">Tất cả</mat-option>
+      <mat-option [value]="orderStatus.PROCESSING">Đang chờ xử lý</mat-option>
+      <mat-option [value]="orderStatus.DELIVERING">Đang giao</mat-option>
+      <mat-option [value]="orderStatus.DELIVERED">Đã giao</mat-option>
+      <mat-option [value]="orderStatus.CANCELED">Đả huỷ</mat-option>
     </mat-select>
   </mat-form-field>
+
+  <mat-paginator
+    [pageSizeOptions]="[5, 10]"
+    [pageIndex]="page - 1"
+    [pageSize]="itemsPerPage"
+    [length]="totalItems"
+    (page)="handlePageChange($event)"
+    aria-label="Select page of users"
+  ></mat-paginator>
   <app-order *ngFor="let order of orders" [order]="order"></app-order>
 </div>
