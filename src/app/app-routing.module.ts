@@ -12,6 +12,9 @@ import {
 } from '@shared/resolver';
 import { CartItemsResolver } from '@shared/resolver/cart-items.resolver';
 import { AuthGuard } from './guards/auth.guard';
+import { ProfileFormComponent } from '@modules/profile-form/profile-form.component';
+import { AddressFormComponent } from '@modules/address-form/address-form.component';
+import { OrderListComponent } from '@modules/order-list/order-list.component';
 
 const routes: Routes = [
   {
@@ -54,8 +57,6 @@ const routes: Routes = [
   {
     path: 'profile',
     resolve: {
-      profile: ProfileResolver,
-      addresses: AddressesResolver,
       items: CartItemsResolver,
       detail: CartDetailResolver,
       shippingFees: ShippingFeesResolver,
@@ -65,6 +66,26 @@ const routes: Routes = [
       import('./modules/profile/profile.component').then(
         (m) => m.ProfileComponent,
       ),
+    children: [
+      {
+        path: 'info',
+        component: ProfileFormComponent,
+        resolve: {
+          profile: ProfileResolver,
+        },
+      },
+      {
+        path: 'address',
+        component: AddressFormComponent,
+        resolve: {
+          addresses: AddressesResolver,
+        },
+      },
+      {
+        path: 'order',
+        component: OrderListComponent,
+      },
+    ],
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
