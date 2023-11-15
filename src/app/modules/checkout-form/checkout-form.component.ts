@@ -6,11 +6,12 @@ import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { numberFormat } from '@constant';
 import { CreateOrderDto } from '@dto';
 import { AddressModel, CartModel, ShippingFeeModel } from '@model';
-import { CartRO } from '@ro';
+import { CartRO, ShippingMethodDataRO } from '@ro';
 import {
   CartService,
   OrderService,
   ShippingFeeService,
+  ShippingMethodService,
   ToastrCustomService,
 } from '@service';
 import { AddressService } from '@service/address.service';
@@ -34,13 +35,15 @@ import { WhiteFormComponent } from '@shared/components/white-form/white-form.com
 })
 export class CheckoutFormComponent implements OnInit {
   constructor(
-    private addressSerivce: AddressService,
-    private shippingFeeService: ShippingFeeService,
-    private cartService: CartService,
+    private readonly addressSerivce: AddressService,
+    private readonly shippingFeeService: ShippingFeeService,
+    private readonly cartService: CartService,
+    private readonly shippingMethodService: ShippingMethodService,
   ) {}
   createOrderDto = new CreateOrderDto();
   addresses: AddressModel[];
   shippingFees: ShippingFeeModel[];
+  shippingMethods: ShippingMethodDataRO[];
   cartDetail: CartModel;
   numberFormat = numberFormat;
 
@@ -60,6 +63,11 @@ export class CheckoutFormComponent implements OnInit {
         this.cartDetail = detail;
       },
     });
+    this.shippingMethodService.methods$.subscribe({
+      next: (methods) => {
+        this.shippingMethods = methods;
+      },
+    });
   }
 
   onAddressChange(event: MatSelectChange) {
@@ -75,6 +83,22 @@ export class CheckoutFormComponent implements OnInit {
     this.cartService
       .updateCart$({
         shippingFeeId: event.value,
+      })
+      .subscribe({
+        complete: () => {
+          this.cartService.getDetail$().subscribe({
+            next: (detail) => {
+              this.cartService.setDetail$(detail);
+            },
+          });
+        },
+      });
+  }
+
+  onShippingMethodChange(event: MatSelectChange) {
+    this.cartService
+      .updateCart$({
+        shippingMethodId: event.value,
       })
       .subscribe({
         complete: () => {
