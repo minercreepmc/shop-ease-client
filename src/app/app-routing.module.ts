@@ -15,6 +15,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { ProfileFormComponent } from '@modules/profile-form/profile-form.component';
 import { AddressFormComponent } from '@modules/address-form/address-form.component';
 import { OrderListComponent } from '@modules/order-list/order-list.component';
+import { ShippingMethodsResolver } from '@shared/resolver/shipping-methods.resolver';
 
 const routes: Routes = [
   {
@@ -25,6 +26,7 @@ const routes: Routes = [
       addresses: AddressesResolver,
       detail: CartDetailResolver,
       shippingFees: ShippingFeesResolver,
+      shippingMethods: ShippingMethodsResolver,
     },
   },
   {
@@ -36,6 +38,7 @@ const routes: Routes = [
       items: CartItemsResolver,
       detail: CartDetailResolver,
       shippingFees: ShippingFeesResolver,
+      shippingMethods: ShippingMethodsResolver,
     },
     loadComponent: () =>
       import('./modules/shop/shop.component').then((m) => m.ShopComponent),
@@ -48,6 +51,7 @@ const routes: Routes = [
       addresses: AddressesResolver,
       detail: CartDetailResolver,
       shippingFees: ShippingFeesResolver,
+      shippingMethods: ShippingMethodsResolver,
     },
     loadComponent: () =>
       import('./modules/product-details/product-details.component').then(
@@ -60,6 +64,7 @@ const routes: Routes = [
       items: CartItemsResolver,
       detail: CartDetailResolver,
       shippingFees: ShippingFeesResolver,
+      shippingMethods: ShippingMethodsResolver,
     },
     canActivate: [AuthGuard],
     loadComponent: () =>

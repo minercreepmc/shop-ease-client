@@ -9,3 +9,5 @@ export * from './product.ro';
 export * from './shipping.ro';
 export * from './user.ro';
 export * from './order-item.ro';
+export * from './shipping-fee.ro';
+export * from './shipping-method.ro';

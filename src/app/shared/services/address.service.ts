@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { ApiApplication } from '@constant';
 import { CreateAddressDto } from '@dto';
 import { AddressModel } from '@model';
+import { AddressGetAllRO } from '@ro';
 import { BehaviorSubject, tap } from 'rxjs';
 
 @Injectable({
@@ -22,7 +23,7 @@ export class AddressService {
   }
 
   getAddresses() {
-    return this.http.get<AddressModel[]>(
+    return this.http.get<AddressGetAllRO>(
       ApiApplication.ADDRESS.CONTROLLER + '/' + ApiApplication.ADDRESS.GET_ALL,
     );
   }

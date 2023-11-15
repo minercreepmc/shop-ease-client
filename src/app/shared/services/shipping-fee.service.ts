@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { ApiApplication } from '@constant';
 import { CreateShippingFeeDto, UpdateShippingFeeDto } from '@dto';
 import { ShippingFeeModel } from '@model';
+import { ShippingFeeGetAllRO } from '@ro/shipping-fee.ro';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 
 @Injectable({
@@ -29,7 +30,7 @@ export class ShippingFeeService {
   }
 
   getFees$() {
-    return this.http.get<ShippingFeeModel[]>(
+    return this.http.get<ShippingFeeGetAllRO>(
       ApiApplication.SHIPPING_FEE.CONTROLLER +
         '/' +
         ApiApplication.SHIPPING_FEE.GET_ALL,
