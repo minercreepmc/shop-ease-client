@@ -94,4 +94,20 @@ export class CheckoutFormComponent implements OnInit {
         },
       });
   }
+
+  onShippingMethodChange(event: MatSelectChange) {
+    this.cartService
+      .updateCart$({
+        shippingMethodId: event.value,
+      })
+      .subscribe({
+        complete: () => {
+          this.cartService.getDetail$().subscribe({
+            next: (detail) => {
+              this.cartService.setDetail$(detail);
+            },
+          });
+        },
+      });
+  }
 }

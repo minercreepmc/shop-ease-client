@@ -1,5 +1,6 @@
 export class CreateCartDto {}
 export class UpdateCartDto {
-  shippingFeeId?: string;
-  addressId?: string;
+  shippingFeeId?: string | null;
+  addressId?: string | null;
+  shippingMethodId?: string | null;
 }

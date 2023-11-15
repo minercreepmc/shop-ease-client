@@ -5,7 +5,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { numberFormat } from '@constant';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { CartModel } from '@model';
 import { CheckoutDialogComponent } from '@modules/checkout-dialog/checkout-dialog.component';
 import { CartItemRO, CartRO } from '@ro';
 import { CartItemService } from '@service/cart-item.service';

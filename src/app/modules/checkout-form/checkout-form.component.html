@@ -27,7 +27,7 @@
     <mat-label>Phương thức thanh toán</mat-label>
     <mat-select
       [value]="cartDetail.shipping_method_id"
-      (selectionChange)="onShippingFeeChange($event)"
+      (selectionChange)="onShippingMethodChange($event)"
     >
       <mat-option *ngFor="let method of shippingMethods" [value]="method.id">{{
         method.name
