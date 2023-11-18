@@ -22,5 +22,17 @@
     (page)="handlePageChange($event)"
     aria-label="Select page of users"
   ></mat-paginator>
-  <app-order *ngFor="let order of orders" [order]="order"></app-order>
+  <div id="print-section">
+    <app-order *ngFor="let order of orders" [order]="order"></app-order>
+  </div>
+
+  <button
+    mat-raised-button
+    color="primary"
+    [useExistingCss]="true"
+    printSectionId="print-section"
+    ngxPrint
+  >
+    In ra
+  </button>
 </div>

@@ -71,7 +71,11 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   deleteItem(id: string) {
-    this.cartItemService.deleteCartItem$(id).subscribe();
+    this.cartItemService.deleteCartItem$(id).subscribe({
+      next: () => {
+        this.getTotalPrice();
+      },
+    });
   }
 
   confirmCheckout() {

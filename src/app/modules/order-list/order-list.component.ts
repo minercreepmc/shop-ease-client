@@ -8,6 +8,9 @@ import { OrderStatus } from '@constant';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { OrderGetAllDataRO } from '@ro';
 import { OrderGetAllDto } from '@dto';
+import { NgxPrintModule } from 'ngx-print';
+import { ButtonComponent } from '@shared/components';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-order-list',
@@ -20,6 +23,8 @@ import { OrderGetAllDto } from '@dto';
     MatSelectModule,
     MatFormFieldModule,
     MatPaginatorModule,
+    NgxPrintModule,
+    MatButtonModule,
   ],
 })
 export class OrderListComponent implements OnInit {
