@@ -6,7 +6,7 @@
   <h3>{{ product.name }}</h3>
   <div *ngIf="product.discount">
     <div class="old-price">
-      <a> ${{ product.price | number: numberFormat }} </a>
+      <a> {{ product.price | number: numberFormat }} VND</a>
     </div>
     <div class="price">{{ product.new_price | number: numberFormat }} VND</div>
   </div>

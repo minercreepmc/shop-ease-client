@@ -12,6 +12,7 @@ import {
   ShippingStatusService,
 } from '@service';
 import { ConfirmDialogComponent } from '@shared/components/confirm-dialog/confirm-dialog.component';
+import { NgxPrintModule } from 'ngx-print';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
@@ -27,6 +28,7 @@ import { BehaviorSubject } from 'rxjs';
     DecimalPipe,
     NgIf,
     AsyncPipe,
+    NgxPrintModule,
   ],
 })
 export class OrderComponent implements OnInit {
@@ -78,6 +80,9 @@ export class OrderComponent implements OnInit {
         break;
       case OrderStatus.DELIVERED:
         this.statusMessageSubject.next('Đơn hàng đã được giao');
+        break;
+      case OrderStatus.CANCELED:
+        this.statusMessageSubject.next('Đơn hàng của bạn đã bị hủy');
         break;
       default:
         this.statusMessageSubject.next('');

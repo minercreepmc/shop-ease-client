@@ -8,9 +8,17 @@
     >
       <mat-option [value]="''">Tất cả</mat-option>
       <mat-option [value]="orderStatus.PROCESSING">Đang chờ xử lý</mat-option>
+      <mat-option [value]="orderStatus.ASSIGNED"
+        >Đã giao cho shipper</mat-option
+      >
+      <mat-option [value]="orderStatus.ACCEPTED"
+        >Đã được shipper tiếp nhận</mat-option
+      >
       <mat-option [value]="orderStatus.DELIVERING">Đang giao</mat-option>
       <mat-option [value]="orderStatus.DELIVERED">Đã giao</mat-option>
       <mat-option [value]="orderStatus.CANCELED">Đả huỷ</mat-option>
+      <mat-option [value]="orderStatus.DELIVERED">Đã giao</mat-option>
+      <mat-option [value]="orderStatus.COMPLETED">Đã hoàn thành</mat-option>
     </mat-select>
   </mat-form-field>
 
@@ -22,17 +30,5 @@
     (page)="handlePageChange($event)"
     aria-label="Select page of users"
   ></mat-paginator>
-  <div id="print-section">
-    <app-order *ngFor="let order of orders" [order]="order"></app-order>
-  </div>
-
-  <button
-    mat-raised-button
-    color="primary"
-    [useExistingCss]="true"
-    printSectionId="print-section"
-    ngxPrint
-  >
-    In ra
-  </button>
+  <app-order *ngFor="let order of orders" [order]="order"></app-order>
 </div>
